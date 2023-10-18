@@ -77,17 +77,17 @@
                      
                       <div class="row">
                             <div class="form-group col-md-6">
-                            <input type="text" name="name" class="form-control" id="name" placeholder="Your Name" required>
+                            <input type="text" name="name" class="form-control" id="name" placeholder="Tu Nombre" required>
                              </div>
                             <div class="form-group col-md-6">
-                            <input type="email" class="form-control" name="email" id="email" placeholder="Your Email" required>
+                            <input type="email" class="form-control" name="email" id="email" placeholder="Tu correo" required>
                             </div>
                        
                             <div class="form-group col-md-6">
-                            <input type="text" class="form-control" name="subject" id="subject" placeholder="Subject" required>
+                            <input type="text" class="form-control" name="subject" id="subject" placeholder="Sujeto" required>
                             </div>
                             <div class="form-group col-md-12">
-                            <textarea class="form-control" name="message" id="message" rows="5" placeholder="Message" required></textarea>
+                            <textarea class="form-control" name="message" id="message" rows="5" placeholder="Mensaje" required></textarea>
                             </div>
 
                         <div class="my-3">
