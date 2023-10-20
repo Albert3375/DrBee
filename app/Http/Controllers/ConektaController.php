@@ -2,11 +2,13 @@
 
 namespace App\Http\Controllers;
 
+
+use Conekta\Conekta;
 use App\Models\Adress;
 use Illuminate\Http\Request;
 use App\Models\User;
 use Illuminate\Support\Facades\DB;
-use Conekta\Conekta;
+
 
 class ConektaController extends Controller
 {

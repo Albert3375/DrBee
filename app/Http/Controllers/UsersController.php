@@ -2,11 +2,15 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Controllers\ConektaController;
+
 use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\Role;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+
+
 
 class UsersController extends Controller
 {
@@ -35,7 +39,9 @@ class UsersController extends Controller
         $user->surname = $request->surname;
         $user->email = $request->email;
         $user->phone = $request->phone;
+        $user->rfc = $request->rfc; 
         $user->password = bcrypt($request->password);
+        $user->member_code = $this->claveGenerator(); // Genera un valor para member_code
         $user->save();
 
         $role_admin = Role::where('name', 'admin')->first();

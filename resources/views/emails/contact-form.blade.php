@@ -35,6 +35,7 @@
         <p><strong>Email:</strong> {{ $data['email'] }}</p>
         <p><strong>Subject:</strong> {{ $data['subject'] }}</p>
         <p><strong>Message:</strong> {{ $data['message'] }}</p>
+        <p>Gracias por comunicarte con nosotros. Tu mensaje ha sido recibido y tomaremos en cuenta tus comentarios.</p>
     </div>
 </body>
 </html>
