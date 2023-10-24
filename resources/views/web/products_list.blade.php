@@ -103,20 +103,41 @@
                                     <h6 class="product_title"><a href="{{ url('product_detail/'.$product->id)}}">{{ $product->name}}</a></h6>
                                     <div class="product_price">
     @php
-    // Calcula el precio con el porcentaje de la categoría y el descuento del producto
-    $discountedPrice = $product->price - ($product->price * ($category->percentage / 100)) - ($product->price * ($product->discount / 100));
+    // Inicializa el precio con el precio base del producto
+    $discountedPrice = $product->price;
+
+    // Verifica si hay un descuento en la categoría y lo aplica
+    if ($product->category->percentage > 0) {
+        $discountedPrice -= ($product->price * ($product->category->percentage / 100));
+    }
+
+    // Verifica si hay un descuento en el producto y lo aplica (corrige la condición)
+    if ( $product->category->percentage > 0) {
+        $discountedPrice -= ($product->price * ($product->discount / 100));
+    }
+
+    // Asegura que el precio no sea negativo
+    $discountedPrice = max($discountedPrice, 0);
+
+    // Formatea el precio con 2 decimales
+    $formattedPrice = number_format($discountedPrice, 2);
     @endphp
 
     @if ($discountedPrice < $product->price)
-        <span class="price">${{ number_format($discountedPrice, 2) }} MXN</span>
+        <span class="price">${{ $formattedPrice }} MXN</span>
         <del>${{ number_format($product->price, 2) }} MXN</del>
         <div class="on_sale">
-            <span>@lang('products.discount'): {{ $product->category->percentage }}%</span>
+            @if ( $product->category->percentage == 0) <!-- Corrige la condición -->
+                <span>@lang('products.discount'): 0%</span>
+            @else
+                <span>@lang('products.discount'): {{  $product->category->percentage }}%</span>
+            @endif
         </div>
     @else
         <span class="price">${{ number_format($product->price, 2) }} MXN</span>
     @endif
 </div>
+
 
 
 

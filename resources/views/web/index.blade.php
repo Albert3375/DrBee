@@ -18,11 +18,11 @@
 
 
 <!-- START SECTION BANNER -->
-<div class="banner_section full_screen staggered-animation-wrap">
+<div class="banner_section full_screen staggered-animation-wrap" style="height: 3500%;">
     <div id="carouselExampleControls" class="carousel slide carousel-fade light_arrow carousel_style2"
         data-ride="carousel">
         <div class="carousel-inner">
-            <div class="carousel-item active background_bg overlay_bg_50" data-img-src="img/zoo.jpg">
+            <div class="carousel-item active background_bg overlay_bg_50"  data-img-src="img/zoo.jpg">
                 <div class="banner_slide_content banner_content_inner">
                     <div class="container">
                         <div class="row justify-content-center">
@@ -82,10 +82,10 @@
     <div class="container">
         <div class="row">
             <div class="col-md-12">
-                <h3>Galería de Imágenes</h3>
+  
             </div>
         </div>
-        <div class="row">
+        <div class="row" >
             <div class="col-md-12">
                 <div class="slick-carousel">
                     <div><img src="img/hikari-1.jpg" alt="Imagen 1"></div>
@@ -273,54 +273,94 @@ $(document).ready(function(){
 
 
     <br><br>
-<section class="por-que-comprar">
-  <div class="container" >
-    <div class="row">
-      <div class="col-md-12 text-center">
-        <h2 >Por qué comprar con nosotros</h2>
-      </div>
-    </div>
-    <div class="row">
-      <!-- Primer elemento a la izquierda -->
-      <div class="col-md-6 col-lg-3">
-        <div class="feature">
-          <img src="{{ asset('img/ventas.jpg') }}" alt="Envío a todo México">
-          <h3 >Envío a todo México</h3>
-          <p>Contamos con un sistema de logística y envíos, lo cual nos permite mandar de manera efectiva y rápida toda nuestra gama de productos a toda la República Mexicana.</p>
-        </div>
-      </div>
+    <section class="por-que-comprar" >
+        <div class="container">
+            <div class="row text-center">
+                <div class="col-md-12">
+                    <h2 class="section-title">Por qué comprar con nosotros</h2>
+                </div>
+            </div>
+            <div class="row">
+                <!-- Primer elemento -->
+                <div class="col-md-6 col-lg-3">
+                    <div class="feature">
+                        <img src="{{ asset('img/ventas.jpg') }}" alt="Envío a todo México" class="feature-image">
+                        <h3 class="feature-title">Envío a todo México</h3>
+                        <p class="feature-description">Contamos con un sistema de logística y envíos, lo cual nos permite mandar de manera efectiva y rápida toda nuestra gama de productos a toda la República Mexicana.</p>
+                    </div>
+                </div>
 
-      <!-- Segundo elemento a la izquierda -->
-      <div class="col-md-6 col-lg-3">
-        <div class="feature">
-          <img src="{{ asset('img/variedad.jpg') }}" alt="Gran Variedad y Surtido">
-          <h3 >Gran Variedad y Surtido</h3>
-          <p >En Zoofish contamos con la más amplia variedad de accesorios y equipos de venta al mayoreo para tu negocio.</p>
-        </div>
-      </div>
+                <!-- Segundo elemento -->
+                <div class="col-md-6 col-lg-3">
+                    <div class="feature">
+                        <img src="{{ asset('img/variedad.jpg') }}" alt="Gran Variedad y Surtido" class="feature-image">
+                        <h3 class="feature-title">Gran Variedad y Surtido</h3>
+                        <p class="feature-description">En Zoofish contamos con la más amplia variedad de accesorios y equipos de venta al mayoreo para tu negocio.</p>
+                    </div>
+                </div>
 
-      <!-- Primer elemento a la derecha -->
-      <div class="col-md-6 col-lg-3">
-        <div class="feature">
-          <img src="{{ asset('img/ahorro.jpg}') }}" alt="Los Mejores Precios">
-          <h3 >Los Mejores Precios</h3>
-          <p >Sé competitivo en tu negocio. Zoofish te ofrece los mejores precios del mercado en peces y accesorios para mascotas. Cotiza con nosotros.</p>
-        </div>
-      </div>
+                <!-- Tercer elemento -->
+                <div class="col-md-6 col-lg-3">
+                    <div class="feature">
+                        <img src="img/ahorro.jpg" alt="Los Mejores Precios" class="feature-image">
+                        <h3 class="feature-title">Los Mejores Precios</h3>
+                        <p class="feature-description">Sé competitivo en tu negocio. Zoofish te ofrece los mejores precios del mercado en peces y accesorios para mascotas. Cotiza con nosotros.</p>
+                    </div>
+                </div>
 
-      <!-- Segundo elemento a la derecha -->
-      <div class="col-md-6 col-lg-3">
-        <div class="feature">
-        <h3 >Confianza en Tus Compras</h3>
-        <p class="confidence">Más de 30 años de experiencia nos respaldan. Somos una empresa confiable en la comercialización y venta al mayoreo de equipos y accesorios.</p>
-          <!-- Agrega una imagen y texto para el cuarto elemento -->
+                <!-- Cuarto elemento -->
+                <div class="col-md-6 col-lg-3">
+                    <div class="feature">
+                        <img src="img/negocios.jpg" alt="Confianza en Tus Compras" class="feature-image">
+                        <h3 class="feature-title">Confianza en Tus Compras</h3>
+                        <p class="feature-description">Más de 30 años de experiencia nos respaldan. Somos una empresa confiable en la comercialización y venta al mayoreo de equipos y accesorios.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+<style>
+    /* Estilos para la sección "Por qué comprar con nosotros" */
+.por-que-comprar {
+    background-color: #fff ;
+    padding: 60px 0;
+}
+
+.section-title {
+    color: #333;
+}
+
+.feature {
+    background-color: #fff;
+    border: 3px solid #ddd;
+    padding: 20px;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.feature-image {
+    max-width: 100%;
+}
+
+.feature-title {
+    font-size: 18px;
+    margin-top: 20px;
+}
+
+.feature-description {
+    font-size: 14px;
+    color: #777;
+}
+
+/* Estilos responsivos */
+@media (max-width: 768px) {
+    .feature {
+        margin: 0 0 20px;
+    }
+}
+
+</style>
     
-  
-  </div>
-  </div>
-      </div>
-    </div>
-</section>
 
 
 

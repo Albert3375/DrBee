@@ -50,6 +50,7 @@
                 <div class="col-md-9">
                   
                     {!! Form::select('category_id', $category, 0, ['class'=>'form-control']) !!}
+                
                   {{-- <input class="form-control" id="text-input" type="text" value="{{ $method == 'EDIT' ? $reference->bank_id : '' }}" name="bank_id"> --}}
 
                 </div>
@@ -65,15 +66,15 @@
 
                 </div>
               </div>
-
-              <!-- <div class="form-group row">
+<!-- 
+             <div class="form-group row">
                 <label class="col-md-3 col-form-label" for="text-input">@lang('panel.discount')</label>
                 <div class="col-md-9">
                  
                 <input class="form-control" min=0 max=100 id="text-input" type="number" value="{{ $method == 'EDIT' ? $product->discount : '' }}" name="discount"  required>
                 </div>
                 
-              </div>  -->
+              </div>   -->
 
               <div class="form-group row">
                 <label class="col-md-3 col-form-label" for="text-input">@lang('panel.products_stock')</label>
@@ -96,17 +97,7 @@
                   <input class="form-control" id="text-input" type="text" value="{{ $method == 'EDIT' ? $product->stock : '' }}" name="stock">
                 </div>
               </div>
-              <div class="form-group row">
-    <label class="col-md-3 col-form-label" for="category_id">Categoria</label>
-    <div class="col-md-9">
-        <select class="form-control" id="category_id" name="category_id">
-            <option value="">Ninguna categoría</option> <!-- Opción para "Ninguna categoría" -->
-            @foreach($categories as $category)
-                <option value="{{ $category->id }}">{{ $category->name }}</option>
-            @endforeach
-        </select>
-    </div>
-</div>
+             
 --}}
 
 

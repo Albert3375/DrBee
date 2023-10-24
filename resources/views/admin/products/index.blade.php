@@ -61,7 +61,13 @@
                                 <td>{{ $product->category->name }}</td>
                             
                                 <td>{{ $product->price }}</td>
-                                <td>{{ $product->category->percentage }}%</td>
+                                <td>
+    @if ($product->category->percentage == 0)
+        0%
+    @else
+        {{ $product->category->percentage }}%
+    @endif
+</td>
 
                                 <td>{{ $product->stock }}</td>
                                 <td>
