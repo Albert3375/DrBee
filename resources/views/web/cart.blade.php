@@ -69,72 +69,72 @@
                                                     <th class="product-price" style="width: 180px;">@lang('cart.price_disc')</th>
                                                     <th class="product-quantity">@lang('cart.quantity')</th>
                                                     <th class="product-subtotal">@lang('cart.total')</th>
-                                                    <th class="product-subtotal">@lang('cart.total_disc')</th>
+                                               
                                                     <th class="product-quantity">@lang('cart.amount_saved')</th>
                                                     <th class="product-remove">@lang('cart.delete')</th>
                                                 </tr>
                                             </thead>
                                             <tbody class="text-center">
-                                                @php 
-                                                    $total = 0; 
-                                                    $quantityProducts = 0;
+    @php
+    $total = 0;
+    $totalDiscount = 0;
+    @endphp
 
-                                                    foreach($cart as $value) {
-                                                        $quantityProducts = $quantityProducts +  $value->quantity;
-                                                    }
+    @if ($cart)
+    @foreach ($cart as $product)
+        @php
+        $quantityProducts = $product->quantity;
+        $discountedPrice = $product->price;
+        $discountAmount = 0;
 
-                                                @endphp
-                                                @if ($cart)
-                                                    @foreach ($cart as $product)
-                                                        @php
-                                                        if($quantityProducts >= 24) {
-                                                            $subtotal = 0;
-                                                            if($product->priceDiscount != 0){
-                                                                $subtotal = $product->quantity * $product->priceDiscount;
-                                                            } else {
-                                                                $subtotal = $product->quantity * $product->price;
-                                                            }
-                                                            $subTotal = $product->quantity * $product->price;
-                                                            $subtotalDiscount = $product->quantity* $product->priceDiscount;
-                                                            $total = $subtotal + $total;
-                                                        } else if ($quantityProducts < 24) { 
-                                                            $subtotal = $product->quantity * $product->price;
-                                                            $subTotal = $product->quantity * $product->price;
-                                                            $subtotalDiscount = $product->quantity* $product->priceDiscount;
-                                                            $total = $subtotal + $total;
-                                                        }
+        // Verifica si hay un descuento en la categoría y lo aplica
+        if ($product->category && $product->category->percentage > 0) {
+            $discountedPrice -= ($product->price * ($product->category->percentage / 100));
+            $discountAmount = ($product->price - $discountedPrice) * $quantityProducts;
+        }
 
-                                                        //$quantityProducts = $quantityProducts +  $product->quantity;
+        // Asegura que el precio no sea negativo
+        $discountedPrice = max($discountedPrice, 0);
+        $formattedPrice = number_format($discountedPrice, 2);
+        @endphp
 
-                                                        @endphp
-                                                        <tr class="text-center">
-                                                            <td class="product-thumbnail"><a href="#"><img src="{{ $product->img }}" alt="product1"></a></td>
-                                                            <td class="product-name" data-title="Producto"><a href="#">{{ $product->name }}</a></td>
-                                                            <td class="product-price" data-title="Precio">$ {{ $product->price }}</td>
-                                                            <td class="product-price" data-title="Precio con Desc. ">
-                                                                <span id="priceDiscountSpan-{{$product->id}}">$ {{ number_format($product->priceDiscount,2) }}</span>
-                                                            </td>
-                                                            <td class="product-quantity column" data-title="Cantidad">
-                                                                <div class="quantity column" style="display: inline-block; text-align: center; border: none">
-                                                                    <input type="button" onclick="rest({{ $product->product_id }})" value="-" class="minus">
-                                                                    <input id="quantity-{{$product->product_id}}" type="text" min="1" name="quantity" value="{{ $product->quantity }}" title="Qty" class="qty" size="4" onchange="modifyCart({{$product->product_id}})">
-                                                                    <input type="button" onclick="add({{ $product->product_id }})" value="+" class="plus">
-                                                                </div>
-                                                            </td>
-                                                            <td class="product-subtotal" data-title="Total">
-                                                                <span class="" id="priceSpan-{{ $product->id }}">$ {{ number_format($subTotal, 2) }}</span>
-                                                            </td>
-                                                            <td class="product-subtotal" data-title="Total con Desc.">
-                                                                <span id="priceSpanDisc-{{ $product->id }}">$ {{ number_format($subtotalDiscount, 2) }}</span>
-                                                            </td>
-                                                            <td class="product-quantity" data-title="Total Ahorrado">
-                                                                <span id="spanDiscount-{{$product->id}}">$ {{number_format(($subTotal - $subtotalDiscount), 2)}}</span>
-                                                            </td>
-                                                            <td class="product-remove" data-title="Remove"><a href="{{ url('removeItemCart/'.$product->product_id)}}"><i class="ti-close"></i></a></td>
-                                                        </tr>
-                                                    @endforeach
-                                                @endif
-                                            </tbody>
+        <tr class="text-center">
+            <td class="product-thumbnail"><a href="#"><img src="{{ $product->img }}" alt="product1"></a></td>
+            <td class="product-name" data-title="Producto"><a href="#">{{ $product->name }}</a></td>
+            <td class="product-price" data-title="Precio">
+                <span>${{ $formattedPrice }} MXN (con descuento de productos)</span>
+            </td>
+
+            <td class="product-price" data-title="Descuento">
+                @if ($product->category && $product->category->percentage > 0)
+                    <span>{{ $product->category->percentage }}% de descuento</span>
+                @else
+                    <span>Sin descuento</span>
+                @endif
+            </td>
+
+            <td class="product-quantity column" data-title="Cantidad">
+                <div class="quantity column" style="display: inline-block; text-align: center; border: none">
+                    <input type="button" onclick="rest({{ $product->product_id }})" value="-" class="minus">
+                    <input id="quantity-{{$product->product_id}}" type="number" min="1" name="quantity" value="{{ $product->quantity }}" title="Qty" class="qty" size="4" onchange="modifyCart({{$product->product_id}})">
+                    <input type="button" onclick="add({{ $product->product_id }})" value="+" class="plus">
+                </div>
+            </td>
+            <td class="product-subtotal" data-title="Total">
+                <span class="" id="priceSpan-{{ $product->id }}">$ {{ number_format($discountedPrice * $quantityProducts, 2) }}</span>
+            </td>
+            <td class="product-quantity" data-title="Total Ahorrado">
+                <span id="spanDiscount-{{$product->id}}">$ {{ number_format($discountAmount, 2) }}</span>
+            </td>
+            <td class="product-remove" data-title="Remove"><a href="{{ url('removeItemCart/'.$product->product_id)}}"><i class="ti-close"></i></a></td>
+        </tr>
+    @endforeach
+    @endif
+</tbody>
+
+
+
+
                                             <tfoot>
                                                 <tr class="text-center">
                                                     <td colspan="12">

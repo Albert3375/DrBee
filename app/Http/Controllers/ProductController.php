@@ -84,6 +84,7 @@ class ProductController extends Controller
         $products->category_id = $request->category_id;
         $products->subcategory = $request->subcategory;
         $products->price = $request->price;
+        $products->clave_sae = $request->clave_sae;
         $products->discount = $request->discount;
         $products->stock = $request->stock;
         $products->save();
@@ -288,84 +289,38 @@ class ProductController extends Controller
 
                     $totalQuantity = Session::where('session_estatus', session_id())->get()->sum('quantity');
                     $array = PriceRules::where('category_id', $product->category_id)->get()->pluck('quantityPerPackage')->toArray();
-
                     $Cart = Session::where('session_estatus', session_id())->get();
-                    if ($totalQuantity >= $array[0] && $totalQuantity < $array[1]) {
-                        foreach ($Cart as $c) {
-                            $priceRule = PriceRules::where('category_id', $c->category_id)->where('quantityPerPackage', $array[0])->first();
-                            $c->priceDiscount = $priceRule->priceDiscount;
-                            //$c->priceDiscount = $priceRule->unitPrice;
-                            $c->discount = $priceRule->savedTotal;
-                            $c->save();
-                        }
-                    } elseif ($totalQuantity >= $array[1] && $totalQuantity < $array[2]) {
-                        foreach ($Cart as $c) {
-                            $priceRule = PriceRules::where('category_id', $c->category_id)->where('quantityPerPackage', $array[1])->first();
-                            $c->priceDiscount = $priceRule->priceDiscount;
-                            //$c->priceDiscount = $priceRule->unitPrice;
-                            $c->discount = $priceRule->savedTotal;
-                            $c->save();
-                        }
-                    } elseif ($totalQuantity >= $array[2] && $totalQuantity < $array[3]) {
-                        foreach ($Cart as $c) {
-                            $priceRule = PriceRules::where('category_id', $c->category_id)->where('quantityPerPackage', $array[2])->first();
-                            $c->priceDiscount = $priceRule->priceDiscount;
-                            //$c->priceDiscount = $priceRule->unitPrice;
-                            $c->discount = $priceRule->savedTotal;
-                            $c->save();
-                        }
-                    } elseif ($totalQuantity >= $array[3] && $totalQuantity < $array[4]) {
-                        foreach ($Cart as $c) {
-                            $priceRule = PriceRules::where('category_id', $c->category_id)->where('quantityPerPackage', $array[3])->first();
-                            $c->priceDiscount = $priceRule->priceDiscount;
-                            //$c->priceDiscount = $priceRule->unitPrice;
-                            $c->discount = $priceRule->savedTotal;
-                            $c->save();
-                        }
-                    } elseif ($totalQuantity >= $array[4] && $totalQuantity < $array[5]) {
-                        foreach ($Cart as $c) {
-                            $priceRule = PriceRules::where('category_id', $c->category_id)->where('quantityPerPackage', $array[4])->first();
-                            $c->priceDiscount = $priceRule->priceDiscount;
-                            //$c->priceDiscount = $priceRule->unitPrice;
-                            $c->discount = $priceRule->savedTotal;
-                            $c->save();
-                        }
-                    } elseif ($totalQuantity >= $array[5] && $totalQuantity < $array[6]) {
-                        foreach ($Cart as $c) {
-                            $priceRule = PriceRules::where('category_id', $c->category_id)->where('quantityPerPackage', $array[5])->first();
-                            $c->priceDiscount = $priceRule->priceDiscount;
-                            //$c->priceDiscount = $priceRule->unitPrice;
-                            $c->discount = $priceRule->savedTotal;
-                            $c->save();
-                        }
-                    } elseif ($totalQuantity >= $array[6] && $totalQuantity < $array[7]) {
-                        foreach ($Cart as $c) {
-                            $priceRule = PriceRules::where('category_id', $c->category_id)->where('quantityPerPackage', $array[6])->first();
-                            $c->priceDiscount = $priceRule->priceDiscount;
-                            //$c->priceDiscount = $priceRule->unitPrice;
-                            $c->discount = $priceRule->savedTotal;
-                            $c->save();
-                        }
-                    } elseif ($totalQuantity >= $array[7]) {
-                        foreach ($Cart as $c) {
-                            $priceRule = PriceRules::where('category_id', $c->category_id)->where('quantityPerPackage', $array[7])->first();
-                            $c->priceDiscount = $priceRule->priceDiscount;
-                            //$c->priceDiscount = $priceRule->unitPrice;
-                            $c->discount = $priceRule->savedTotal;
-                            $c->save();
-                        }
-                    } elseif ($totalQuantity < $array[0]) {
-                        foreach ($Cart as $c) {
-                            $c->priceDiscount = 0.00;
-                            $c->discount = 0.00;
-                            $c->totalDiscount = 0.00;
-                            $c->save();
-                        }
+
+                    // Verificar si $array tiene al menos 8 elementos
+                    if (empty($array) || count($array) < 8) {
+                        // Obtener los valores de $array desde la base de datos
+                        $array = PriceRules::where('category_id', $product->category_id)->get()->pluck('quantityPerPackage')->toArray();
                     }
-                    // dd('ya hay uno  igual');
-                } else {
-                    $array = PriceRules::where('category_id', $product->category_id)->get()->pluck('quantityPerPackage')->toArray();
-                    $priceRule = PriceRules::where('category_id', $product->category_id)->where('quantityPerPackage', $array[0])->first();
+                    
+                    if (count($array) >= 8) {
+                        if ($totalQuantity >= $array[0] && $totalQuantity < $array[1]) {
+                            // Tu lógica para el primer rango de cantidades
+                        } elseif ($totalQuantity >= $array[1] && $totalQuantity < $array[2]) {
+                            // Tu lógica para el segundo rango de cantidades
+                        } elseif ($totalQuantity >= $array[2] && $totalQuantity < $array[3]) {
+                            // Tu lógica para el tercer rango de cantidades
+                        } elseif ($totalQuantity >= $array[3] && $totalQuantity < $array[4]) {
+                            // Tu lógica para el cuarto rango de cantidades
+                        } elseif ($totalQuantity >= $array[4] && $totalQuantity < $array[5]) {
+                            // Tu lógica para el quinto rango de cantidades
+                        } elseif ($totalQuantity >= $array[5] && $totalQuantity < $array[6]) {
+                            // Tu lógica para el sexto rango de cantidades
+                        } elseif ($totalQuantity >= $array[6] && $totalQuantity < $array[7]) {
+                            // Tu lógica para el séptimo rango de cantidades
+                        } elseif ($totalQuantity >= $array[7]) {
+                            // Tu lógica para el octavo rango de cantidades
+                        } else {
+                            // Tu lógica cuando la cantidad no se encuentra en ninguno de los rangos
+                        }
+                    } else {
+                        // Manejo de caso en el que $array no tiene al menos 8 elementos
+                    }
+                    
 
                     //print_r("Array: " . $array);
                     //print_r("priceRule: " . $priceRule);

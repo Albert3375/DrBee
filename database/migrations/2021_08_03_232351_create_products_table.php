@@ -20,6 +20,7 @@ class CreateProductsTable extends Migration
             $table->longText('image')->nullable();
             $table->unsignedInteger('category_id');
             $table->unsignedDecimal('price',8,2);
+            $table->string('clave_sae')->unique(); // Permitir valores nulos
             $table->unsignedInteger('discount')->nullable();
             $table->integer('stock');
             $table->timestamps();

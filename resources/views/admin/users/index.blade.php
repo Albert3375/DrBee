@@ -2,6 +2,43 @@
 
 @section('content')
 
+
+<style>
+/* Estilo para centrar contenido y dar espacio a los botones */
+.container {
+    background-color: #f5f5f5; /* Color de fondo gris claro */
+    border: 1px solid #3498db; /* Borde azul claro */
+    border-radius: 10px; /* Borde redondeado */
+    padding: 20px; /* Espaciado interno del contenedor */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Sombra suave */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+.container h1 {
+    color: #3498db; /* Color de texto azul */
+}
+
+/* Estilo para resaltar botones dentro del contenedor */
+.container .btn {
+    background-color: #3498db; /* Fondo azul para el botón */
+    color: #ffffff; /* Texto blanco para el botón */
+    border: none;
+    border-radius: 3px;
+    padding: 15px 30px; /* Aumento del espacio en los botones */
+    margin: 10px 0; /* Espaciado entre los botones */
+    cursor: pointer;
+    transition: background-color 0.3s ease; /* Transición de color de fondo al pasar el mouse */
+}
+
+.container .btn:hover {
+    background-color: #2980b9; /* Cambio de color de fondo del botón al pasar el mouse */
+}
+
+</style>
   <ol class="breadcrumb">
     <li class="breadcrumb-item"><a href="{{ URL('/admin') }}">@lang('panel.home')</a></li>
     <li class="breadcrumb-item active">@lang('panel.users')</li>
@@ -9,7 +46,7 @@
 
   @include('flash::message')
 
-  <div class="container-fluid">
+  <div class="container">
       <div class="animated fadeIn">
         <div class="card">
           <div class="card-header">
@@ -28,9 +65,12 @@
               <div class="col-md-12">
                   <div class="table-responsive col-md-12" align="center">
                       <br>
-                      <table id="table-users" class="display" width="100%">
+
+                      <link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css">
+
+                      <table id="example" class="display compact " style="width:100%">
                         <thead>
-                            <tr align="center">
+                            <tr align="center" >
                                 <th># @lang('panel.user')</th>
                                 <th>@lang('panel.name')</th>
                                 <th>@lang('panel.lastname')</th>
@@ -42,12 +82,13 @@
                         </thead>
                         <tbody>
                           @foreach($users as $user)
-                            <tr align="center">
+                            <tr align="center" >
                                 <td>{{ $user->id }}</td>
                                 <td>{{ $user->name }}</td>
                                 <td>{{ $user->surname }}</td>
                                 <td>{{ $user->email }}</td>
                                 <td>{{ $user->phone }}</td>
+                           
                                 @if($user->hasRole('admin'))
                                   <td>@lang('panel.admin')</td>
                                 @elseif($user->hasRole('user'))
@@ -126,6 +167,20 @@
           });
       @endif
   </script>
+
+<script src="https://code.jquery.com/jquery-3.7.0.js"></script>
+<script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
+
+
+
+
+<script>
+    $(document).ready(function() {
+        $('#example').DataTable({
+            stateSave: true
+        });
+    });
+</script>
 @endpush
 
 @endsection

@@ -4,11 +4,16 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\ConektaController;
 
+use App\Models\Tag;
+
+
 use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\Role;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Conekta\Conekta;
+
 
 
 
@@ -39,10 +44,38 @@ class UsersController extends Controller
         $user->surname = $request->surname;
         $user->email = $request->email;
         $user->phone = $request->phone;
-        $user->rfc = $request->rfc; 
+        $user->rfc = $request->rfc;
+        $tags = explode(',', $request->tags);
+
+        if (count($tags) > 5) {
+            return redirect()->back()->with('error', 'No puedes guardar más de 5 etiquetas.');
+        }
+        
+        $user->tags = json_encode($tags);
+        
+        $user->clave_sae = $request->clave_sae; 
         $user->password = bcrypt($request->password);
         $user->member_code = $this->claveGenerator(); // Genera un valor para member_code
+   
+        if ($request->hasFile('archivo_pdf')) {
+            $archivo = $request->file('archivo_pdf');
+            $nombreArchivo = time() . '.' . $archivo->getClientOriginalExtension();
+            $archivo->move(public_path('archivos_pdf'), $nombreArchivo);
+            $user->archivo_pdf = $nombreArchivo;
+        }
+
+        if ($request->hasFile('profile_image')) {
+            $image = $request->file('profile_image');
+            $imageName = time() . '.' . $image->getClientOriginalExtension();
+            $image->move(public_path('profile_images'), $imageName);
+    
+            $user->profile_image = $imageName;
+        }
         $user->save();
+
+        
+
+        // Almacena etiquetas relacionadas con el usuario
 
         $role_admin = Role::where('name', 'admin')->first();
         $role_user = Role::where('name', 'user')->first();
@@ -55,36 +88,13 @@ class UsersController extends Controller
             $users = User::latest()->get();
         }
 
-        \Conekta\Conekta::setApiKey("key_3s2n2j8XXyrEShuVTBrx4g");
-        \Conekta\Conekta::setLocale('es');
-
-        $user = User::find($user->id);
-
-        try {
-            $customer = \Conekta\Customer::create(
-                [
-                    'name'  => $user->name,
-                    'email' => $user->email,
-                    'phone' => $user->phone,
-                ]
-            );
-        } catch (\Conekta\ParameterValidationError $error) {
-            $bug = $error->getMessage();
-            return response()->json(['bug' => $bug], 200);
-        } catch (\Conekta\Handler $error) {
-            $bug = $error->getMessage();
-            return response()->json(['bug' => $bug], 200);
-        }
-
-        $user->conekta_customer_id = $customer->id;
-        $user->save();
+        $users = User::latest()->get();
         $myid = Auth::user()->id;
 
         flash('Usuario añadido correctamente.')->success()->important();
 
         return view('admin.users.index', compact('users', 'myid'));
     }
-
     public function edit($id)
     {
         $method = 'EDIT';
@@ -105,42 +115,54 @@ class UsersController extends Controller
     public function update(Request $request, $id)
     {
         $user = User::find($id);
+        
+        // Validar los datos del formulario si es necesario
+        $validatedData = $request->validate([
+            'name' => 'required|string',
+            'email' => 'required|email|unique:users,email,' . $id,
+            'password' => 'nullable|string|min:6',
+            'phone' => 'required|string',
+        'surname' => 'required|string',
+      
 
-        $data = $request->validate(
-            [
-                'email' => "bail|sometimes|unique:users,email,$id"
-            ]
-        );
 
-        if ($request->has('password') && !empty($request->password)) {
-            $user->password = bcrypt($request->password);
+            // Agrega más reglas de validación según tus necesidades
+        ]);
+
+        // Actualizar los datos del usuario
+        $user->name = $validatedData['name'];
+        $user->email = $validatedData['email'];
+        $user->phone = $validatedData['phone'];
+        $user->surname = $validatedData['surname'];
+
+        
+        if (!empty($validatedData['password'])) {
+            $user->password = bcrypt($validatedData['password']);
         }
 
-        $user->surname = $request->surname;
-        $user->phone = $request->phone;
-
-        if ($user->isDirty()) {
-            $user->save();
-            $role_admin = Role::where('name', 'admin')->first();
-            $role_user = Role::where('name', 'user')->first();
-
-            if ($user->roles_id == 2) {
-                $user->roles()->detach();
-                $user->roles()->attach($role_user);
-                $user = User::latest()->get();
-            } else if ($user->roles_id == 1) {
-                $user->roles()->detach();
-                $user->roles()->attach($role_admin);
-                $user = User::latest()->get();
-            }
-
-            flash(__('Usuario actualizado correctamente.'))->success()->important();
-            return redirect()->route('admin.users.edit', $id);
-        } else {
-            flash(__('No hay cambios por aplicar.'))->warning()->important();
-            return redirect()->route('admin.users.edit', $id);
-        }
+         // Actualizar las etiquetas
+    $tags = explode(',', $request->tags);
+    if (count($tags) > 5) {
+        return redirect()->back()->with('error', 'No puedes guardar más de 5 etiquetas.');
     }
+    $user->tags = json_encode($tags);
+
+
+    if ($request->hasFile('profile_image')) {
+        $image = $request->file('profile_image');
+        $imageName = time() . '.' . $image->getClientOriginalExtension();
+        $image->move(public_path('profile_images'), $imageName);
+
+        $user->profile_image = $imageName;
+    }
+
+        $user->save();
+
+        // Redirigir a la página de edición con un mensaje de éxito
+        return redirect()->route('admin.users.edit', $id)->with('success', 'Usuario actualizado correctamente.');
+    }
+
+    
 
     public function destroy($id)
     {

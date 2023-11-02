@@ -123,6 +123,131 @@ $(document).ready(function(){
 
 <!-- Estilo CSS personalizado para permitir el desplazamiento del carrusel con el mouse -->
 <style>
+
+     /* Sección de imágenes en carrusel */
+     .image-carousel {
+        background-color: #f5f5f5;
+        padding: 20px;
+        border-radius: 10px;
+        text-align: center;
+    }
+
+    .slick-carousel {
+        display: flex;
+        justify-content: center;
+    }
+
+    .slick-carousel img {
+        width: 120px;
+        height: 120px;
+        border: 5px solid #337ab7;
+        border-radius: 50%;
+        margin: 10px;
+        transition: transform 0.3s ease;
+        cursor: pointer;
+    }
+
+    .slick-carousel img:hover {
+        transform: scale(1.1);
+    }
+
+
+    .zoofish-pets img {
+        width: 60%;
+    }
+
+    /* Sección del catálogo Zoofish Pets */
+    .catalog-section {
+        background: #337ab7;
+        color: #fff;
+        padding: 50px;
+        border-radius: 10px;
+        text-align: center;
+        animation: slideIn 1s;
+    }
+
+    .catalog-section h2 {
+        color: #fff;
+        font-size: 32px;
+    }
+
+    .catalog-section img {
+        width: 80%;
+        border: 5px solid #f5f5f5;
+        border-radius: 10px;
+    }
+
+    /* Sección "Por qué comprar con nosotros" */
+    .por-que-comprar {
+        background: #f5f5f5;
+        color: #333;
+        padding: 50px;
+        border-radius: 10px;
+        text-align: center;
+    }
+
+    .section-title {
+        color: #337ab7;
+        font-size: 36px;
+        margin-bottom: 30px;
+        animation: bounce 1s;
+    }
+
+    .feature {
+        background: #fff;
+        padding: 30px;
+        margin: 20px;
+        border-radius: 10px;
+        box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+        animation: fadeIn 1s;
+    }
+
+    .feature:hover {
+        transform: scale(1.05);
+    }
+
+    .feature-image {
+        width: 80px;
+        height: 80px;
+        border: 5px solid #337ab7;
+        border-radius: 50%;
+        margin: 20px auto;
+        transition: transform 0.3s;
+    }
+
+    .feature-title {
+        color: #337ab7;
+        font-size: 24px;
+        margin-bottom: 20px;
+    }
+
+    .feature-description {
+        color: #333;
+        font-size: 18px;
+    }
+
+    /* Animaciones */
+    @keyframes fadeIn {
+        0% { opacity: 0; transform: translateY(20px); }
+        100% { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes slideIn {
+        0% { opacity: 0; transform: translateX(-20px); }
+        100% { opacity: 1; transform: translateX(0); }
+    }
+
+    @keyframes bounce {
+        0%, 20%, 50%, 80%, 100% {
+            transform: translateY(0);
+        }
+        40% {
+            transform: translateY(-10px);
+        }
+        60% {
+            transform: translateY(-5px);
+        }
+    }
     .carousel {
         cursor: grabbing !important;
     }

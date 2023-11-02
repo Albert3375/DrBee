@@ -211,12 +211,29 @@
 
 <body>
 
-  <div class="preloader">
-    <div class="lds-ellipsis">
-        <span>
-        </span>
-    </div>
-  </div> 
+<div class="preloader">
+    <!-- Utiliza un archivo GIF como animación de carga -->
+    <img src="{{ asset('assets/images/loadingdog.gif') }}" alt="Cargando..."  >
+</div>
+
+
+<style>
+  /* styles.css */
+.preloader {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+}
+
+
+</style>
  <!-- @yield('popup')  -->
 
   @include('web.partials.nav')

@@ -2,10 +2,14 @@
 
 namespace App\Http\Controllers;
 
+
+use Conekta\Conekta;
 use Illuminate\Http\Request;
 use PayPal\Api\Amount;
 use PayPal\Api\Details;
 use PayPal\Api\Item;
+
+
 
 /** All Paypal Details class **/
 
@@ -26,6 +30,36 @@ use Illuminate\Support\Facades\Config;
 
 class PaymentController extends Controller
 {
+
+    public function createCustomer($userId)
+    {
+        // Configurar Conekta (reemplaza 'API_KEY' por tu clave real de Conekta)
+        \Conekta\Conekta::setApiKey("key_3s2n2j8XXyrEShuVTBrx4g");
+        \Conekta\Conekta::setLocale('es');
+
+        // Obtener el usuario por su ID
+        $user = User::find($userId);
+
+        // Crear un cliente en Conekta
+        try {
+            $customer = \Conekta\Customer::create([
+                'name'  => $user->name,
+                'email' => $user->email,
+                'phone' => $user->phone,
+            ]);
+        } catch (\Conekta\ParameterValidationError $error) {
+            $bug = $error->getMessage();
+            return response()->json(['bug' => $bug], 200);
+        } catch (\Conekta\Handler $error) {
+            $bug = $error->getMessage();
+            return response()->json(['bug' => $bug], 200);
+        }
+
+        // Asignar el ID del cliente de Conekta al usuario
+        $user->conekta_customer_id = $customer->id;
+        $user->save();
+    }
+
     private $_api_context;
     /**
      * Create a new controller instance.

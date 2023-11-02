@@ -1,32 +1,33 @@
 @extends('admin.styles')
 
 <style>
-    .btn:focus,.btn:hover,.btn.active {
-        box-shadow: none;
-        outline: medium none;
+    .btn:focus, .btn:hover, .btn.active {
+        box-shadow: 0 0 10px rgba(255, 147, 0, 0.5);
+        transform: scale(1.05);
     }
+    
     button:focus {
-        outline:none;
+        outline: none;
     }
+    
     .btn {
-        border-width: 1px;
+ 
         cursor: pointer;
         line-height: normal;
         padding: 12px 35px;
-        text-transform: capitalize;
+        text-transform: uppercase;
         transition: all 0.3s ease-in-out;
+        background: linear-gradient(to right, #ff9300, #ff6700);
+        color: #fff;
+        border-radius: 5px;
+        position: relative;
+        overflow: hidden;
     }
+    
     .btn.active:focus, .btn:active:focus {
         box-shadow: none !important;
     }
-    .btn-fill-out {
-        background-color: transparent;
-        border: 1px solid #ff9300;
-        color: #fff;
-        position: relative;
-        overflow: hidden;
-        z-index: 1;
-    }
+    
     .btn-fill-out::before,
     .btn-fill-out::after {
         content: "";
@@ -39,50 +40,138 @@
         transition: all 0.3s ease-in-out;
         width: 51%;
     }
+    
     .btn-fill-out::after {
         right: 0;
         left: auto;
     }
+    
     .btn-fill-out:hover:before,
     .btn-fill-out:hover:after {
         width: 0;
     }
+    
     .btn-fill-out:hover {
         color: #ff9300 !important;
     }
-    .btn-line-fill:before, .btn-line-fill:after {
-    position: absolute;
-    top: 50%;
-    content: '';
-    width: 20px;
-    height: 20px;
-    background-color: #333;
-    border-radius: 50%;
-    z-index: -1;
-}
-.btn-line-fill:before {
-    left: -20px;
-    -webkit-transform: translate(-50%, -50%);
-    transform: translate(-50%, -50%);
-}
-.btn-line-fill:after {
-    right: -20px;
-    -webkit-transform: translate(50%, -50%);
-    transform: translate(50%, -50%);
-}
-.btn-line-fill:hover:before {
-    -webkit-animation: criss-cross-left 0.7s both;
-    animation: criss-cross-left 0.7s both;
-    -webkit-animation-direction: alternate;
-    animation-direction: alternate;
-}
-.btn-line-fill:hover:after {
-    -webkit-animation: criss-cross-right 0.7s both;
-    animation: criss-cross-right 0.7s both;
-    -webkit-animation-direction: alternate;
-    animation-direction: alternate;
-}
+    
+    .btn-line-fill::before, .btn-line-fill::after {
+        position: absolute;
+        top: 50%;
+        content: '';
+        width: 20px;
+        height: 20px;
+        background-color: #333;
+        border-radius: 50%;
+        z-index: -1;
+        transform: translate(-50%, -50%);
+        transition: transform 0.3s ease-in-out;
+    }
+    
+    .btn-line-fill::before {
+        left: -20px;
+    }
+    
+    .btn-line-fill::after {
+        right: -20px;
+        transform: translate(50%, -50%);
+    }
+    
+    .btn-line-fill:hover::before {
+        animation: criss-cross-left 0.7s both;
+    }
+    
+    .btn-line-fill:hover::after {
+        animation: criss-cross-right 0.7s both;
+    }
+    
+    @keyframes criss-cross-left {
+        0% {
+            transform: translate(-50%, -50%) scale(1);
+        }
+        100% {
+            transform: translate(-50%, -50%) scale(1.5);
+        }
+    }
+    
+    @keyframes criss-cross-right {
+        0% {
+            transform: translate(50%, -50%) scale(1);
+        }
+        100% {
+            transform: translate(50%, -50%) scale(1.5);
+        }
+    }
+
+    .container-fluid {
+        animation: fadeIn 1s;
+    }
+
+    .card {
+        border: 2px solid #ff9500;
+        border-radius: 15px;
+        box-shadow: 0 0 20px rgba(0, 115, 230, 0.3);
+        background: #ffffff;
+        transition: transform 0.3s ease-in-out;
+    }
+
+    .card:hover {
+        transform: scale(1.03);
+    }
+
+    .card-header {
+        background-color: #0073e6;
+        color: white;
+        padding: 15px;
+        border-top-left-radius: 15px;
+        border-top-right-radius: 15px;
+    }
+
+    .card-body {
+        padding: 20px;
+    }
+
+    .buttons {
+        text-decoration: none;
+    }
+
+    .card.bg-secondary, .card.bg-success, .card.bg-warning, .card.bg-danger, .card.bg-primary {
+        border: none;
+        border-radius: 10px;
+        margin: 10px 0;
+        box-shadow: 0 0 20px rgba(0, 115, 230, 0.3);
+        transition: transform 0.3s ease-in-out;
+    }
+
+    .card.bg-secondary:hover, .card.bg-success:hover, .card.bg-warning:hover, .card.bg-danger:hover, .card.bg-primary:hover {
+        transform: scale(1.03);
+    }
+
+    .buttons .nav-icon {
+        font-size: 30px;
+    }
+
+    @keyframes breadcrumbScale {
+        0% {
+            transform: scale(1);
+        }
+        100% {
+            transform: scale(1.05);
+        }
+    }
+
+    @keyframes fadeIn {
+        0% {
+            opacity: 0;
+            transform: translateY(10px);
+        }
+        100% {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
 </style>
+
 
 @section('content')
 
@@ -339,6 +428,102 @@
                     </div>
                 </div>
             </div>
+            <style>
+    /* Estilo para la tarjeta */
+    .futuristic-card {
+        background: #f2f2f2;
+        border: 1px solid #ccc;
+        border-radius: 10px;
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+        transition: transform 0.3s;
+        margin: 20px;
+        padding: 20px;
+    }
+
+    .futuristic-card:hover {
+        transform: scale(1.03);
+    }
+
+    /* Estilo para el título de la tarjeta */
+    .card-title {
+        font-size: 24px;
+        margin-bottom: 20px;
+        text-align: center;
+        color: #333;
+    }
+
+    /* Estilo para el subtítulo */
+    .sub-title {
+        font-size: 18px;
+        text-align: center;
+        color: #555;
+    }
+
+    /* Estilo para la lista de usuarios */
+    .user-list {
+        list-style: none;
+        padding: 0;
+    }
+
+    .user-list-item {
+        margin-bottom: 10px;
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        background: #fff;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        transition: transform 0.2s;
+    }
+
+    .user-list-item:hover {
+        transform: scale(1.02);
+    }
+
+    /* Animaciones */
+    .animated {
+        animation-duration: 0.5s;
+    }
+
+    .fadeInUp {
+        animation-name: fadeInUp;
+    }
+
+    @keyframes fadeInUp {
+        from {
+            transform: translateY(20px);
+            opacity: 0;
+        }
+        to {
+            transform: translateY(0);
+            opacity: 1;
+        }
+    }
+</style>
+
+
+@if (Auth::user()->hasRole('admin'))
+<div class="card-container">
+    <div class="card futuristic-card">
+        <div class="card-header">
+            <h4 class="card-title">Usuarios Recientes</h4>
+        </div>
+        <div class="card-body">
+            <h5 class="sub-title">¡Descubre a los nuevos miembros!</h5>
+            <ul class="user-list">
+                @foreach ($users as $user)
+                <li class="user-list-item animated fadeInUp">
+                    {{ $user->name }} {{ $user->surname }} - Compras realizadas: {{ count($orders) }}
+                </li>
+                @endforeach
+            </ul>
+        </div>
+    </div>
+</div>
+@endif
+
+
+
+
         </div>
 
 
@@ -418,6 +603,41 @@
         @endif
     </div>
     </div>  -->
+
+
+
+
+<style>
+
+/* Estilos para el contenedor que rodea la tarjeta */
+.card-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+}
+
+/* Estilos para la tarjeta más pequeña */
+.small-card {
+    width: 70%;
+}
+
+
+.compact-table th,
+.compact-table td {
+    padding: 8px 10px; /* Reducir el espacio interno de celdas */
+    text-align: left;
+}
+
+/* Efectos de hover */
+.table-row:hover {
+    background-color: #cde2ff;
+    transition: background-color 0.3s;
+    cursor: pointer;
+}
+
+
+</style>
 
     @push('script')
         <script>

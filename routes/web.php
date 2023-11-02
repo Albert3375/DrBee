@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\PerfilController;
 use App\Http\Controllers\DeliveriesController;
 use App\Http\Controllers\ConciliationsController;
 use App\Http\Controllers\OrdersController;
@@ -9,6 +10,7 @@ use App\Models\Warehouse;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ContactController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -28,6 +30,9 @@ use App\Http\Controllers\ContactController;
 Route::get('setLanguage/{lang}','webPageController@setLanguage');
 
 Route::get('/', 'ProductController@home');
+
+Route::get('/admin/users/perfil', 'PerfilController@index')->name('admin.users.perfil');
+
 
 // Route::resource('outlet', 'OutletController');
 
@@ -168,6 +173,9 @@ Route::post('get_best_seller_products/', 'ReportsController@getBestSellerProduct
 
 Route::get('/contact', [ContactController::class, 'index'])->name('web.contacto');
 Route::post('/contact', [ContactController::class, 'sendContactForm'])->name('contact.send');
+
+Route::get('/tags', 'TagController@index');
+
 //Cards
 // Route::post('addPaymentMethod','ConektaController@addPaymentMethod');
 // Route::post('addCard','ConektaController@addCard');

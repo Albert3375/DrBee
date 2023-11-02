@@ -67,77 +67,78 @@
             return false;
         }
     </script>
+<style type="text/css">
+    table.dataTable thead th,
+    table.dataTable thead td {
+        padding: 5px;
+        text-align: center;
+        border-bottom: 2px solid var(--main-color); /* Cambié el borde a utilizar la variable de color principal */
+    }
+</style>
 
-    <style type="text/css">
-        table.dataTable thead th,
-        table.dataTable thead td {
-            padding: 0.5px;
-            text-align: center;
-            border-bottom: 1px solid rgba(0, 0, 0, 0.3)
-        }
-    </style>
+<style>
+    :root {
+        --main-color: #00abff;
+        --hover-color: #006cff;
+    }
 
-    <style>
-        :root {
-            --main-color: #00abff;
-            --hover-color: #006cff;
-        }
+    table th, td {
+        text-align: center;
+    }
 
-        table th, td {
-            text-align: center;
-        }
+    .dropbtn {
+        background-color: var(--main-color);
+        color: white;
+        border: none;
+        width: 100%;
+        min-width: 180px;
+        font-size: 16px; /* Aumenté el tamaño de fuente */
+        border-radius: 5px; /* Aumenté el radio del borde */
+        transition: background-color 0.3s, color 0.3s; /* Agregué transiciones suaves */
+    }
 
-        .dropbtn {
-            background-color: var(--main-color);
-            color: white;
-            border: none;
-            width: 100%;
-            min-width: 180px;
-            font-size: 14px;
-            border-radius: 3px;
-        }
+    .dropdown {
+        position: relative;
+        display: inline-block;
+    }
 
-        .dropdown {
-            position: relative;
-            display: inline-block;
-        }
+    .dropdown-content {
+        display: none; /* Inicialmente oculto */
+        position: absolute;
+        background-color: var(--main-color); /* Cambié el color de fondo */
+        min-width: 160px;
+        -webkit-box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+        -moz-box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+        box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+        z-index: 1;
+        border-radius: 5px; /* Añadí un radio al borde */
+    }
 
-        .dropdown-content {
-            display: true;
-            position: absolute;
-            background-color: whitesmoke;
-            min-width: 160px;
-            -webkit-box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-            -moz-box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-            z-index: 1;
-        }
+    .dropdown-content a {
+        color: white; /* Texto blanco */
+        padding: 12px 16px;
+        text-decoration: none;
+        display: block;
+        transition: background-color 0.3s; /* Transición para el color de fondo */
+    }
 
-        .dropdown-content a {
-            color: black;
-            padding: 12px 16px;
-            text-decoration: none;
-            display: block;
-        }
+    .dropdown-content a:hover {
+        background-color: var(--hover-color); /* Cambio de color en el hover */
+    }
 
-        .dropdown-content a:hover {
-            background-color: rgb(224, 224, 224);
-        }
+    .dropdown:hover .dropdown-content {
+        display: block; /* Mostrar al hacer hover */
+    }
 
-        .dropdown:hover .dropdown-content {
-            display: block;
-        }
+    .dropdown:hover .dropbtn {
+        background-color: var(--hover-color); /* Cambio de color en el hover */
+    }
 
-        .dropdown:hover .dropbtn {
-            background-color: var(--hover-color);
-            color: whitesmoke;
-        }
+    .dropdown .dropbtn:focus {
+        background-color: var(--hover-color); /* Cambio de color en el enfoque */
+    }
+</style>
 
-        .dropdown .dropbtn:focus {
-            background-color: var(--hover-color);
-            color: whitesmoke;
-        }
-    </style>
   </head>
 <body class="app header-fixed sidebar-fixed aside-menu-fixed sidebar-lg-show">
     @include('admin.partials.header')

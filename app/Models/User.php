@@ -21,6 +21,7 @@ class User extends Authenticatable
         'email',
         'phone',
         'password',
+        'profile_image'
     ];
 
     /**
@@ -80,4 +81,11 @@ class User extends Authenticatable
         }
         return false;
     }
+
+    public function tags()
+    {
+        return $this->belongsToMany(Tag::class);
+    }
+    
+
 }

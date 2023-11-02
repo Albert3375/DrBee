@@ -1,3 +1,81 @@
+<style>
+  /* Estilo del menú */
+  .sidebar {
+    background-color: #002B4D;
+    width: 250px;
+    position: fixed;
+    height: 100%;
+    color: #fff;
+    padding-top: 20px;
+  }
+
+  .sidebar ul.nav {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .sidebar li.nav-title {
+    font-family: 'Century Gothic', cursive;
+    font-size: 24px;
+  }
+
+  .sidebar li.nav-item {
+    padding: 10px 0;
+  }
+
+  .sidebar a.nav-link {
+    color: #fff;
+    text-decoration: none;
+    font-family: 'Century Gothic', cursive;
+    font-size: 16px;
+    transition: background-color 0.2s, color 0.2s; /* Transición de color de fondo y texto */
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    border-radius: 5px;
+  }
+
+  .sidebar a.nav-link:hover {
+    background-color: #FFA500; /* Cambiar el fondo a naranja al pasar el mouse */
+    color: #fff; /* Cambiar el color del texto a blanco al pasar el mouse */
+  }
+
+  .nav-icon {
+    margin-right: 10px;
+  }
+
+  /* Estilo para elementos desplegables */
+  .nav-dropdown-toggle::after {
+    content: "\f107";
+    float: right;
+    margin-left: 10px;
+  }
+
+  .nav-dropdown-toggle.collapsed::after {
+    content: "\f105";
+  }
+
+
+  .nav-dropdown-toggle.collapsed + ul.nav-dropdown-items {
+    display: block;
+  }
+
+  /* Animaciones */
+  @keyframes bounce {
+    0%, 20%, 50%, 80%, 100% {
+      transform: translateY(0);
+    }
+    40% {
+      transform: translateY(-20px);
+    }
+    60% {
+      transform: translateY(-10px);
+    }
+  }
+</style>
+
+    
     <div class="sidebar">
         <nav class="sidebar-nav">
             <ul class="nav">
@@ -11,7 +89,7 @@
                     </li>
 
                       <li class="nav-item">
-                        <a href="{{ route('admin.users.edit', auth()->user()->id) }}" class="nav-link">
+                        <a href="{{ route('admin.users.perfil', auth()->user()->id) }}" class="nav-link">
                             <i class="nav-icon fas fa-user-edit"></i> @lang('menu.edit_profile')
                         </a>
                     </li>
@@ -244,7 +322,7 @@
                     </li>
 
                     <li class="nav-item">
-                        <a href="{{ route('admin.users.edit', auth()->user()->id) }}" class="nav-link">
+                        <a href="{{ route('admin.users.perfil', auth()->user()->id) }}" class="nav-link">
                             <i class="nav-icon fas fa-user-edit"></i> @lang('menu.my_account')
                         </a>
                     </li>

@@ -42,7 +42,7 @@ class ContactFormNotification extends Notification
     public function toMail($notifiable)
     {
         $name = $this->data->name;
-        $phone = $this->data->phone;
+   
         $email = $this->data->email;
         $subject = $this->data->subject;
         $message = $this->data->message;
@@ -53,7 +53,7 @@ class ContactFormNotification extends Notification
         ->markdown('notifications.contact_form',
             [
                 'name' => $name,
-                'phone' => $phone,
+        
                 'email' => $email,
                 'subject' => $subject,
                 'message' => $message

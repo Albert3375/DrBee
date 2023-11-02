@@ -56,28 +56,33 @@
                             @lang('menu.contact')
                         </a></li>
 
-
                         @if (Route::has('login'))
-                            <li align="center">
-                                @auth
-                                    <a class="nav-link" href="{{ url('/admin') }}">
-                                        @lang('menu.hello') {{ Auth::user()->name }}
-                                        <span><i class="linearicons-user"> </i></span>
-                                    </a>
-                                @else
-                                    <a class="nav-link" href="{{ route('login') }}">
-                                        @lang('menu.login')
-                                    </a>
-                                </li>
-                                <li align="center">
-                                    <!-- @if (Route::has('register'))
-                                        <a class="nav-link" href="{{ route('register') }}">
-                                            @lang('menu.register')
-                                        </a>
-                                    @endif -->
-                                @endauth
-                            </li>
-                        @endif
+    <li align="center">
+        @auth
+            <a class="nav-link" href="{{ url('/admin') }}">
+                <div style="display: flex; align-items: center;">
+                    <img src="{{ asset('profile_images/' . Auth::user()->profile_image) }}" alt="Perfil de {{ Auth::user()->name }}" style="width: 40px; height: 40px; border-radius: 50%; margin-right: 10px;">
+                    <span style="font-weight: bold;">@lang('menu.hello') {{ Auth::user()->name }}</span>
+                </div>
+            </a>
+        </li>
+    @else
+        <li align="center">
+            <a class="nav-link" href="{{ route('login') }}">
+                @lang('menu.login')
+            </a>
+        </li>
+        <li align="center">
+            <!-- @if (Route::has('register'))
+                <a class="nav-link" href="{{ route('register') }}">
+                    @lang('menu.register')
+                </a>
+            @endif -->
+        </li>
+    @endauth
+</li>
+@endif
+
                         @if (isset($cart))
                             <li align="center" class="dropdown cart_dropdown"><a class="nav-link cart_trigger" href="#"
                                     data-toggle="dropdown"><i style="color: #002b4c;" class="linearicons-cart"></i><span

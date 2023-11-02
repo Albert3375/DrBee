@@ -91,7 +91,7 @@
                                   
                                 </div>
                                 <div class="text-center">
-                                    <button type="submit" class="btn btn-fill-out">Send Message</button>
+                                    <button type="submit" id="sendButton" class="btn btn-fill-out">Send Message</button>
                                 </div>
                             </form>
                             <div id="success-message" class="text-success" style="display: none;"></div>

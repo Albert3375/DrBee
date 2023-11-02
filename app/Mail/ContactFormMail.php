@@ -15,8 +15,13 @@ class ContactFormMail extends Mailable
 
     public function build()
     {
-        return $this->subject($this->data['subject'])
-                    ->from($this->data['email'])
-                    ->view('emails.contact-form');
+        return $this->view('emails.contact-form')
+            ->subject($this->data->input('subject'))
+            ->from('Zoofish@gmail.com', ' Zoofish') // C
+            ->with([
+                'subject' => $this->data->input('subject'),
+                'title' => 'Título personalizado',
+                'content' => $this->data->input('message'),
+            ]);
     }
 }

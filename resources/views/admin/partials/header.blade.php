@@ -1,4 +1,7 @@
-    <header class="app-header navbar" style="background-color: white;">
+   
+   
+   
+   <header class="app-header navbar" style="background-color: white;">
       <button class="navbar-toggler sidebar-toggler d-lg-none mr-auto" type="button" data-toggle="sidebar-show">
         <span class="navbar-toggler-icon"></span>
       </button>
