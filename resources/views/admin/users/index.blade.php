@@ -139,7 +139,16 @@
           </div>
         </div>
       </div>
-@push('script')
+
+
+      <script>
+    $(document).ready(function() {
+        $('#example').DataTable({
+            stateSave: true
+        });
+    });
+</script>
+
 <script>
       @if (\App::isLocale('es'))
           $("#table-users").DataTable({
@@ -174,13 +183,7 @@
 
 
 
-<script>
-    $(document).ready(function() {
-        $('#example').DataTable({
-            stateSave: true
-        });
-    });
-</script>
-@endpush
+
+
 
 @endsection

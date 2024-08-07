@@ -1,6 +1,3 @@
-@php
-    use App\Models\Comment;
-@endphp
 @extends('web.partials.master')
 
 @section('title', 'Inicio')
@@ -12,583 +9,383 @@
 @endsection
 
 @section('content')
-<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.css">
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js"></script>
+    <!-- Librerías CSS -->
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/4.5.10-0/css/ionicons.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css">
 
-
-<!-- START SECTION BANNER -->
-<div class="banner_section full_screen staggered-animation-wrap" style="height: 3500%;">
-    <div id="carouselExampleControls" class="carousel slide carousel-fade light_arrow carousel_style2"
-        data-ride="carousel">
-        <div class="carousel-inner">
-            <div class="carousel-item active background_bg overlay_bg_50"  data-img-src="img/zoo.jpg">
-                <div class="banner_slide_content banner_content_inner">
-                    <div class="container">
-                        <div class="row justify-content-center">
-                            <div class="col-lg-7 col-md-10">
-                                <div class="banner_content text_white text-center">
-                                    <!-- Agrega tu contenido aquí -->
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="carousel-item background_bg overlay_bg_50" data-img-src="img/zoo2.jpg">
-                <div class="banner_slide_content banner_content_inner">
-                    <div class="container">
-                        <div class="row justify_content-center">
-                            <div class="col-lg-7 col-md-10">
-                                <div class="banner_content text_white text-center">
-                                    <!-- Agrega tu contenido aquí -->
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="carousel-item background_bg overlay_bg_60" data-img-src="img/zoo3.jpg">
-                <div class="banner_slide_content banner_content_inner">
-                    <div class="container">
-                        <div class="row justify_content-center">
-                            <div class="col-lg-7 col-md-10">
-                                <div "banner_content text_white text-center">
-                                    <!-- Agrega tu contenido aquí -->
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev"><i
-                class="ion-chevron-left"></i></a>
-        <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next"><i
-                class="ion-chevron-right"></i></a>
-    </div>
-</div>
-<!-- END SECTION BANNER -->
-
-<script>
-    $(document).ready(function () {
-        // Iniciar el carrusel
-        $('#carouselExampleControls').carousel();
-    });
-</script>
-
-
-<section class="image-carousel">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-12">
-  
-            </div>
-        </div>
-        <div class="row" >
-            <div class="col-md-12">
-                <div class="slick-carousel">
-                    <div><img src="img/hikari-1.jpg" alt="Imagen 1"></div>
-                    <div><img src="img/oceanaqua-1.jpg" alt="Imagen 2"></div>
-                    <div><img src="img/acuamex-1.jpg" alt="Imagen 3"></div>
-                    <div><img src="img/acuario-lomas-1.jpg" alt="Imagen 4"></div>
-                    <div><img src="img/red-sea-1.jpg" alt="Imagen 5"></div>
-                    <div><img src="img/tetra-1.jpg" alt="Imagen 6"></div>
-                    <div><img src="img/tropical-1.jpg" alt="Imagen 7"></div>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-
-<script>
-$(document).ready(function(){
-    $('.slick-carousel').slick({
-        infinite: true,     // Hace que el carrusel sea infinito
-        slidesToShow: 4,    // Cantidad de imágenes visibles a la vez
-        slidesToScroll: 1,  // Cuántas imágenes avanzan al hacer clic en las flechas
-        autoplay: true,     // Inicia la reproducción automática
-        autoplaySpeed: 100,  // Velocidad de la reproducción automática en milisegundos
-        swipe: true,        // Permite a los usuarios arrastrar el carrusel con el cursor
-        speed: 5000,        // Velocidad de desplazamiento en milisegundos
-        cssEase: 'linear'   // Hace que el desplazamiento sea lineal
-    });
-});
-
-</script>
-
-
-
-<!-- Fin de la sección de Galería de Imágenes -->
-
-<!-- Estilo CSS personalizado para permitir el desplazamiento del carrusel con el mouse -->
-<style>
-
-     /* Sección de imágenes en carrusel */
-     .image-carousel {
-        background-color: #f5f5f5;
-        padding: 20px;
-        border-radius: 10px;
-        text-align: center;
-    }
-
-    .slick-carousel {
-        display: flex;
-        justify-content: center;
-    }
-
-    .slick-carousel img {
-        width: 120px;
-        height: 120px;
-        border: 5px solid #337ab7;
-        border-radius: 50%;
-        margin: 10px;
-        transition: transform 0.3s ease;
-        cursor: pointer;
-    }
-
-    .slick-carousel img:hover {
-        transform: scale(1.1);
-    }
-
-
-    .zoofish-pets img {
-        width: 60%;
-    }
-
-    /* Sección del catálogo Zoofish Pets */
-    .catalog-section {
-        background: #337ab7;
-        color: #fff;
-        padding: 50px;
-        border-radius: 10px;
-        text-align: center;
-        animation: slideIn 1s;
-    }
-
-    .catalog-section h2 {
-        color: #fff;
-        font-size: 32px;
-    }
-
-    .catalog-section img {
-        width: 80%;
-        border: 5px solid #f5f5f5;
-        border-radius: 10px;
-    }
-
-    /* Sección "Por qué comprar con nosotros" */
-    .por-que-comprar {
-        background: #f5f5f5;
-        color: #333;
-        padding: 50px;
-        border-radius: 10px;
-        text-align: center;
-    }
-
-    .section-title {
-        color: #337ab7;
-        font-size: 36px;
-        margin-bottom: 30px;
-        animation: bounce 1s;
-    }
-
-    .feature {
-        background: #fff;
-        padding: 30px;
-        margin: 20px;
-        border-radius: 10px;
-        box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
-        animation: fadeIn 1s;
-    }
-
-    .feature:hover {
-        transform: scale(1.05);
-    }
-
-    .feature-image {
-        width: 80px;
-        height: 80px;
-        border: 5px solid #337ab7;
-        border-radius: 50%;
-        margin: 20px auto;
-        transition: transform 0.3s;
-    }
-
-    .feature-title {
-        color: #337ab7;
-        font-size: 24px;
-        margin-bottom: 20px;
-    }
-
-    .feature-description {
-        color: #333;
-        font-size: 18px;
-    }
-
-    /* Animaciones */
-    @keyframes fadeIn {
-        0% { opacity: 0; transform: translateY(20px); }
-        100% { opacity: 1; transform: translateY(0); }
-    }
-
-    @keyframes slideIn {
-        0% { opacity: 0; transform: translateX(-20px); }
-        100% { opacity: 1; transform: translateX(0); }
-    }
-
-    @keyframes bounce {
-        0%, 20%, 50%, 80%, 100% {
-            transform: translateY(0);
+    <!-- Estilos Personalizados -->
+    <style>
+        /* Estilos Globales */
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: #FFDD44; /* Amarillo */
+            color: #0044CC; /* Azul */
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
         }
-        40% {
-            transform: translateY(-10px);
+
+        h2, h3 {
+            text-transform: uppercase;
+            color: #0044CC; /* Azul */
         }
-        60% {
+
+        a {
+            color: #0044CC; /* Azul */
+            text-decoration: none;
+        }
+
+        a:hover {
+            color: #002288; /* Un azul más oscuro */
+        }
+
+        /* Estilos del Carrusel */
+        .owl-carousel .item {
+            position: relative;
+            background-size: cover;
+            background-position: center;
+            height: 100vh;
+        }
+
+        .carousel-content {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+            color: #FFDD44; /* Amarillo */
+        }
+
+        .carousel-content h2 {
+            font-size: 3rem;
+            margin-bottom: 20px;
+        }
+
+        .carousel-content p {
+            font-size: 1.6rem;
+            margin-bottom: 30px;
+        }
+
+        .carousel-content a {
+            display: inline-block;
+            padding: 15px 30px;
+            background-color: #0044CC; /* Azul */
+            color: #FFDD44; /* Amarillo */
+            font-size: 1.4rem;
+            border-radius: 50px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+            transition: background-color 0.3s, transform 0.3s;
+            text-decoration: none;
+        }
+
+        .carousel-content a:hover {
+            background-color: #063970; /* Un azul más oscuro */
+            transform: scale(1.05);
+        }
+
+        /* Sección de Productos */
+        .product-section {
+            padding: 50px 0;
+            background-color: #FFDD44; /* Amarillo */
+            text-align: center;
+        }
+
+        .product-section h2 {
+            margin-bottom: 30px;
+        }
+
+        .product-content {
+            padding: 30px;
+            background-color: #063970; /* Azul */
+            color: #FFDD44; /* Amarillo */
+            border-radius: 15px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+            margin: 20px 0;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .product-content:hover {
             transform: translateY(-5px);
+            box-shadow: 0 12px 20px rgba(0, 0, 0, 0.4);
         }
-    }
-    .carousel {
-        cursor: grabbing !important;
-    }
 
-    .carousel:active {
-        cursor: grabbing !important;
-    }
+        .product-content img {
+            width: 100%;
+            border-radius: 10px;
+            margin-bottom: 15px;
+        }
 
-    .image-carousel {
-    overflow: hidden;
-    width: 100%;
-}
+        .product-content h3 {
+            color: #FFDD44; /* Amarillo */
+            margin-top: 15px;
+        }
 
-.images {
-    white-space: nowrap;
-    transition: transform 1s ease;
-}
+        /* Sección de Información Detallada */
+        .info-section {
+            padding: 50px 0;
+            background-color: #063970; /* Azul */
+            color: #FFDD44; /* Amarillo */
+            text-align: center;
+        }
 
-.images img {
-    display: inline-block;
-    width: 300px; /* Ancho de cada imagen */
-    height: auto;
-}
+        .info-section h2 {
+            margin-bottom: 30px;
+        }
 
+        .info-content {
+            padding: 30px;
+            background-color: #FFDD44; /* Amarillo */
+            color: #063970; /* Azul */
+            border-radius: 15px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+            margin: 20px 0;
+            transition: transform 0.3s, box-shadow 0.3s;
+            text-align: left;
+        }
 
-</style>
+        .info-content:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 20px rgba(0, 0, 0, 0.4);
+        }
 
+        /* Sección de Contacto */
+        .contact-section {
+            padding: 50px 0;
+            background-color: #063970; /* Azul */
+        }
 
-    <!-- START SECTION SHOP -->
-    <div class="section small_pt pb_70"  style="background-color: #002B4D;">
-        <div class="container">
-            <div class="row justify-content-center" >
-                <div class="col-md-6">
-                    <div class="heading_s4 text-center">
-                        <h2 style="color: #fff;">@lang('home.best')</h2>
-                    </div>
-                    <p class="text-center leads" style="color: #fff;">@lang('home.eyelashes')</p>
-                    <p style="color: #fff;">Sabemos lo importante que es tu mascota para ti, es por ello que en Zoofish, trabajamos para tener la más amplia gama de productos para acuario y mascotas. Somos distribuidores autorizados de las mejores marcas.</p>
+        .contact-wrap {
+            display: flex;
+            align-items: center;
+            margin-bottom: 30px;
+            color: #FFDD44; /* Amarillo */
+        }
 
+        .contact-icon {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 5rem;
+            height: 5rem;
+            border-radius: 100%;
+            font-size: 2.5rem;
+            color: #FFDD44; /* Amarillo */
+            background-color: #063970; /* Azul */
+        }
+
+        .contact-text h6 {
+            margin: 0;
+            font-size: 1.4rem;
+            color: #FFDD44; /* Amarillo */
+        }
+
+        .contact-text span, .contact-text a {
+            font-size: 1.2rem;
+            color: #FFDD44; /* Amarillo */
+        }
+
+        .contact-form input,
+        .contact-form textarea {
+            width: 100%;
+            padding: 15px;
+            margin-bottom: 20px;
+            border: none;
+            background-color: #FFDD44; /* Amarillo */
+            color: #063970; /* Azul */
+            border-radius: 8px;
+            box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .contact-form button {
+            display: inline-block;
+            padding: 15px 30px;
+            background-color: #063970; /* Azul */
+            color: #FFDD44; /* Amarillo */
+            font-size: 1.4rem;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+            transition: background-color 0.3s, transform 0.3s;
+        }
+
+        .contact-form button:hover {
+            background-color: #002288; /* Un azul más oscuro */
+            transform: scale(1.05);
+        }
+
+        /* Estilos del Pie de Página */
+        .footer-section {
+            padding: 30px 0;
+            background-color: #063970; /* Azul */
+            text-align: center;
+            color: #FFDD44; /* Amarillo */
+        }
+
+        .footer-section .social-links a {
+            color: #FFDD44; /* Amarillo */
+            margin: 0 10px;
+            font-size: 1.5rem;
+            transition: color 0.3s;
+        }
+
+        .footer-section .social-links a:hover {
+            color: #002288; /* Un azul más oscuro */
+        }
+    </style>
+
+    <main>
+        <!-- Carrusel -->
+        <div class="owl-carousel owl-theme">
+            <div class="item" style="background-image: url('https://i.postimg.cc/HsS0v9V4/importancia.jpg');">
+                <div class="carousel-content">
+                    <h2>Bienvenido a Nuestra Farmacia</h2>
+                    <p>Donde el cuidado de su salud es nuestra prioridad.</p>
+                    <a href="#about">Conócenos Más</a>
                 </div>
             </div>
-            <div class="row shop_container">
-                {{-- @foreach ($products as $product)
-                    <div class="col-lg-3 col-md-4 col-6">
-                        <div class="product_box text-center">
-                            <div class="product_img">
-                                <a href="{{ url('product_detail/' . $product->id) }}">
-                                    <img class="card-img-top" src="{{ URL($product->image) }}" style="width: auto !important; height: auto !important; max-width: 100%;">
-                                </a>
-                                <div class="product_action_box">
-                                    <ul class="list_none pr_action_btn">
-                                        <li><a href="//bestwebcreator.com/shopwise/demo/shop-compare.html" class="popup-ajax"><i class="icon-shuffle"></i></a></li>
-                                        <li><a href="{{ url('product_detail/' . $product->id) }}" class=""><i
-                                                    class="icon-magnifier-add"></i></a></li>
-                                        <li><a href="#"><i class="icon-heart"></i></a></li>
-                                    </ul>
-                                </div>
-                            </div>
-                            <div class="product_info">
-                                <h6 class="product_title"><a
-                                        href="{{ url('product_detail/' . $product->id) }}">{{ $product->name }}</a>
-                                </h6>
-                                <div class="product_price">
-                                    <span class="price">${{ $product->price }} MXN</span>
-                                    <del>$ {{ $product->discount }}</del>
-                                </div>
-                                @php
-                                    $comments = Comment::where('products_id',$product->id)->get();
-                                    $rating=0;
-                                        if($comments->count() > 0 ){
-                                            foreach ($comments as $comment) {
-                                                $rating = $rating + $comment->rating;
-                                            }
-                                        $rating = $rating / $comments->count();
-                                        $rating = $rating * 20;
-                                    }
-                                @endphp
-                                <div class="rating_wrap">
-                                    <div class="rating">
-                                        <div class="product_rate" style="width:{{$rating}}%"></div>
-                                    </div>
-                                    <span class="rating_num">{{ $comments->count()}}</span>
-                                </div>
-                                <div class="pr_desc">
-                                    <p></p>
-                                </div>
-                                <div class="add-to-cart">
-                                    <a href="{{ url('add_to_cart/' . $product->id) }}"
-                                        class="btn btn-fill-out btn-radius"><i class="icon-basket-loaded"></i> @lang('home.add')</a>
-                                        
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                @endforeach --}}
-                <div class="col-md-12" align="center">
-                    <a href="{{ url('products') }}" class="btn btn-fill-out btn-radius">
-                        <i class="icon-basket-loaded"></i> Ver productos
-                    </a>
+            <div class="item" style="background-image: url('https://images.pexels.com/photos/16043571/pexels-photo-16043571/free-photo-of-edificio-moderno-calle-ciudad-via.jpeg');">
+                <div class="carousel-content">
+                    <h2>Productos de Calidad</h2>
+                    <p>Ofrecemos una amplia variedad de productos de salud y bienestar.</p>
+                    <a href="#features">Descubre Más</a>
+                </div>
+            </div>
+            <div class="item" style="background-image: url('https://images.pexels.com/photos/16043575/pexels-photo-16043575/free-photo-of-ventanas-puertas-edificio-negocios.jpeg');">
+                <div class="carousel-content">
+                    <h2>Atención Personalizada</h2>
+                    <p>Estamos aquí para ayudarte en cada paso del camino hacia una mejor salud.</p>
+                    <a href="#contact">Contáctanos</a>
                 </div>
             </div>
         </div>
 
-        <br>
-        <br>  
-
-     
-        
+        <!-- Sección de Productos -->
+        <section class="product-section" id="features">
+            <div class="container">
+                <h2>Productos Destacados</h2>
+                <div class="row">
+                    <!-- Producto 1 -->
+                    <div class="col-md-4">
+                        <div class="product-content" data-aos="fade-up">
+                            <img src="https://i.postimg.cc/59sh4WNm/ortopedia.jpg" alt="Producto de Ortopedia">
+                            <h3>Productos de Ortopedia</h3>
+                            <p>Ofrecemos una amplia gama de productos de ortopedia para ayudar a mejorar su movilidad y calidad de vida. Descubra nuestra selección de muletas, rodilleras, sillas de ruedas y más.</p>
+                            <a href="#" class="btn btn-primary">Ver Más</a>
+                        </div>
+                    </div>
+                    <!-- Producto 2 -->
+                    <div class="col-md-4">
+                        <div class="product-content" data-aos="fade-up" data-aos-delay="100">
+                            <img src="https://i.postimg.cc/ZYdh5Wxm/medi.jpg" alt="Medicamentos">
+                            <h3>Medicamentos</h3>
+                            <p>Nuestra farmacia ofrece una variedad de medicamentos para diversas condiciones. Nuestro personal capacitado está aquí para brindarle asesoramiento experto y ayudarle a encontrar lo que necesita.</p>
+                            <a href="#" class="btn btn-primary">Ver Más</a>
+                        </div>
+                    </div>
+                    <!-- Producto 3 -->
+                    <div class="col-md-4">
+    <div class="product-content" data-aos="fade-up" data-aos-delay="200">
+        <img src="https://i.postimg.cc/fT4Pb58W/24.jpg" alt="Enfermedades">
+        <h3>Servicio 24 Horas</h3>
+        <p>Estamos disponibles las 24 horas del día para ofrecerle información y productos necesarios para el manejo y tratamiento de diversas enfermedades. Nuestro equipo está aquí para guiarlo en la gestión de su salud, en cualquier momento.</p>
+        <a href="#" class="btn btn-primary">Ver Más</a>
     </div>
-
-    <br><br>
-    <!-- END SECTION SHOP -->
-<!-- Sección Zoofish Pets -->
-<section class="zoofish-pets">
-  <div class="container">
-    <div class="row">
-      <div class="col-md-6" >
-      <img src="{{ asset('img/zoofish-pets.png') }}" alt="Mascotas" style="width: 50%;">
-    
-        <p>En Zoofish, nos preocupamos por la calidad de vida de tus mascotas. Es por eso que presentamos nuestra división de Pets, que ofrece un extenso catálogo de alimentos y accesorios para una variedad de pequeñas especies, incluyendo perros, gatos, roedores y aves.</p>
-      </div>
-      <div class="col-md-6">
-        <!-- Puedes agregar una imagen aquí -->
-     
-      </div>
-    </div>
-  </div>
-</section>
-
-
-
-<br><br>
-
-
-<section class="catalog-section" style="background-color: #002B4D;">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-8">
-                <h2 style="color: #fff;">Catálogo Zoofish Pets para Pequeñas Especies</h2>
-                <p style="color: #fff;">Más de 200 páginas de productos clasificados por categorías. Te invitamos a descargar nuestro último catálogo para encontrar lo que tu negocio necesita a excelentes precios.</p>
-            </div>
-            <div class="col-md-4">
-                <img src="{{ asset('img/catalog.jpg') }}" alt="Catálogo 1" class="float-right">
-            </div>
-        </div>
-    </div>
-</section>
-
-
-    <br><br>
-    <section class="por-que-comprar" >
-        <div class="container">
-            <div class="row text-center">
-                <div class="col-md-12">
-                    <h2 class="section-title">Por qué comprar con nosotros</h2>
-                </div>
-            </div>
-            <div class="row">
-                <!-- Primer elemento -->
-                <div class="col-md-6 col-lg-3">
-                    <div class="feature">
-                        <img src="{{ asset('img/ventas.jpg') }}" alt="Envío a todo México" class="feature-image">
-                        <h3 class="feature-title">Envío a todo México</h3>
-                        <p class="feature-description">Contamos con un sistema de logística y envíos, lo cual nos permite mandar de manera efectiva y rápida toda nuestra gama de productos a toda la República Mexicana.</p>
-                    </div>
-                </div>
-
-                <!-- Segundo elemento -->
-                <div class="col-md-6 col-lg-3">
-                    <div class="feature">
-                        <img src="{{ asset('img/variedad.jpg') }}" alt="Gran Variedad y Surtido" class="feature-image">
-                        <h3 class="feature-title">Gran Variedad y Surtido</h3>
-                        <p class="feature-description">En Zoofish contamos con la más amplia variedad de accesorios y equipos de venta al mayoreo para tu negocio.</p>
-                    </div>
-                </div>
-
-                <!-- Tercer elemento -->
-                <div class="col-md-6 col-lg-3">
-                    <div class="feature">
-                        <img src="img/ahorro.jpg" alt="Los Mejores Precios" class="feature-image">
-                        <h3 class="feature-title">Los Mejores Precios</h3>
-                        <p class="feature-description">Sé competitivo en tu negocio. Zoofish te ofrece los mejores precios del mercado en peces y accesorios para mascotas. Cotiza con nosotros.</p>
-                    </div>
-                </div>
-
-                <!-- Cuarto elemento -->
-                <div class="col-md-6 col-lg-3">
-                    <div class="feature">
-                        <img src="img/negocios.jpg" alt="Confianza en Tus Compras" class="feature-image">
-                        <h3 class="feature-title">Confianza en Tus Compras</h3>
-                        <p class="feature-description">Más de 30 años de experiencia nos respaldan. Somos una empresa confiable en la comercialización y venta al mayoreo de equipos y accesorios.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-<style>
-    /* Estilos para la sección "Por qué comprar con nosotros" */
-.por-que-comprar {
-    background-color: #fff ;
-    padding: 60px 0;
-}
-
-.section-title {
-    color: #333;
-}
-
-.feature {
-    background-color: #fff;
-    border: 3px solid #ddd;
-    padding: 20px;
-    margin-bottom: 20px;
-    text-align: center;
-}
-
-.feature-image {
-    max-width: 100%;
-}
-
-.feature-title {
-    font-size: 18px;
-    margin-top: 20px;
-}
-
-.feature-description {
-    font-size: 14px;
-    color: #777;
-}
-
-/* Estilos responsivos */
-@media (max-width: 768px) {
-    .feature {
-        margin: 0 0 20px;
-    }
-}
-
-</style>
-    
-
-
-
-    <section class="hero-wrap d-flex parallax"
-        style="height: 500px; background-image: url('{{ asset('backgrounds/three_bg.jpg') }}'); background-size:cover; background-position: center center; margin-top: 0px;">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-12" align="center" style="margin-top: 200px;">
-                    <h2 style="font-size: 42px; text-shadow: 3px 3px 3px #000; color: #fff;" align="center">
-                        {{-- @lang('home.quality') --}}
-
-                        La mejor calidad y precio.
-                    </h2>
-                </div>
-            </div>
-        </div>
-    </section>
-    <!-- START SECTION BLOG -->
-    {{-- <div class="section small_pt pb_70">
-        <div class="container">
-            <div class="row justify-content-center">
-                <div class="col-lg-6 col-md-8">
-                    <div class="heading_s1 text-center">
-                        <h2>Post Nuevos</h2>
-                    </div>
-                    <p class="leads text-center">Siguenos en nuestras redes sociales.</p>
-                </div>
-            </div>
-            <div class="row justify-content-center">
-                <div class="col-lg-4 col-md-6">
-                    <div class="blog_post blog_style1 box_shadow1">
-                        <div class="blog_img">
-                            <a href="blog-single.html">
-                                <img src="assets/images/furniture_blog_img1.jpg" alt="furniture_blog_img1">
-                            </a>
-                        </div>
-                        <div class="blog_content bg-white">
-                            <div class="blog_text">
-                                <h5 class="blog_title"><a href="blog-single.html">But I must explain to you how all this
-                                        mistaken idea</a></h5>
-                                <ul class="list_none blog_meta">
-                                    <li><a href="#"><i class="ti-calendar"></i> April 14, 2018</a></li>
-                                    <li><a href="#"><i class="ti-comments"></i> 2 Comment</a></li>
-                                </ul>
-                                <p>If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't
-                                    anything hidden in the text</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-6">
-                    <div class="blog_post blog_style1 box_shadow1">
-                        <div class="blog_img">
-                            <a href="blog-single.html">
-                                <img src="assets/images/furniture_blog_img2.jpg" alt="furniture_blog_img2">
-                            </a>
-                        </div>
-                        <div class="blog_content bg-white">
-                            <div class="blog_text">
-                                <h5 class="blog_title"><a href="blog-single.html">On the other hand we provide denounce
-                                        with righteous</a></h5>
-                                <ul class="list_none blog_meta">
-                                    <li><a href="#"><i class="ti-calendar"></i> April 14, 2018</a></li>
-                                    <li><a href="#"><i class="ti-comments"></i> 2 Comment</a></li>
-                                </ul>
-                                <p>If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't
-                                    anything hidden in the text</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-6">
-                    <div class="blog_post blog_style1 box_shadow1">
-                        <div class="blog_img">
-                            <a href="blog-single.html">
-                                <img src="assets/images/furniture_blog_img3.jpg" alt="furniture_blog_img3">
-                            </a>
-                        </div>
-                        <div class="blog_content bg-white">
-                            <div class="blog_text">
-                                <h5 class="blog_title"><a href="blog-single.html">Why is a ticket to Lagos so
-                                        expensive?</a></h5>
-                                <ul class="list_none blog_meta">
-                                    <li><a href="#"><i class="ti-calendar"></i> April 14, 2018</a></li>
-                                    <li><a href="#"><i class="ti-comments"></i> 2 Comment</a></li>
-                                </ul>
-                                <p>If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't
-                                    anything hidden in the text</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div> --}}
-    <!-- END SECTION BLOG -->
 </div>
-<!-- END MAIN CONTENT -->
 
-@push('script')
+                </div>
+            </div>
+        </section>
+
+        <!-- Sección de Información Detallada -->
+        <section class="info-section" id="about">
+            <div class="container">
+                <h2>Sobre Nosotros</h2>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="info-content" data-aos="fade-right">
+                            <h3>Nuestra Misión</h3>
+                            <p>Nuestra misión es brindar un servicio excepcional a nuestros clientes, ofreciendo productos de alta calidad y asesoramiento profesional para ayudarles a alcanzar sus objetivos de salud y bienestar.</p>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="info-content" data-aos="fade-left">
+                            <h3>Nuestra Visión</h3>
+                            <p>Nos esforzamos por ser la farmacia líder en atención al cliente, confiabilidad y accesibilidad, contribuyendo a la salud de nuestras comunidades y mejorando la calidad de vida de las personas a las que servimos.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+      <!-- Contacto -->
+<section id="contact" class="contact-section">
+    <div class="container">
+        <h2>Contáctanos</h2>
+        <div class="row">
+            <div class="col-md-6 contact-wrap" data-aos="fade-right">
+                <div class="contact-icon">
+                    <i class="fas fa-phone-alt"></i>
+                </div>
+                <div class="contact-text">
+                    <h6>Llámanos</h6>
+                    <span>+624 143 9856</span>
+                </div>
+            </div>
+            <div class="col-md-6 contact-wrap" data-aos="fade-left">
+                <div class="contact-icon">
+                    <i class="fas fa-envelope"></i>
+                </div>
+                <div class="contact-text">
+                    <h6>Escríbenos</h6>
+                    <a href="mailto:farmaciadrbee@hotmail.com">farmaciadrbee@hotmail.com</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Success Message -->
+        @if (session('success'))
+            <div class="alert alert-success mt-4">
+                {{ session('success') }}
+            </div>
+        @endif
+
+        <form method="POST" action="{{ route('contact.send') }}" class="contact-form" data-aos="fade-up" data-aos-delay="200">
+    @csrf
+    <input type="text" name="name" placeholder="Nombre" required>
+    <input type="email" name="email" placeholder="Correo Electrónico" required>
+    <textarea name="message" rows="4" placeholder="Mensaje" required></textarea>
+    <button type="submit">Enviar Mensaje</button>
+</form>
+
+    </div>
+</section>
+
+
+   
+    </main>
+
+    <!-- Scripts JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
     <script>
-
+        $(document).ready(function(){
+            $('.owl-carousel').owlCarousel({
+                loop: true,
+                margin: 0,
+                nav: true,
+                autoplay: true,
+                autoplayTimeout: 5000,
+                autoplayHoverPause: true,
+                items: 1
+            });
+            AOS.init();
+        });
     </script>
-@endpush
-
 @endsection

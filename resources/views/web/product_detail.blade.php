@@ -56,33 +56,7 @@
                     <div class="product_description">
                         <h4 class="product_title"><a href="#">{{$product->name}}</a></h4>
                         <div class="product_price">
-    @php
-    // Inicializa el precio con el precio base del producto
-    $discountedPrice = $product->price;
-
-    // Verifica si hay un descuento en la categoría y lo aplica
-    if ($product->category->percentage > 0) {
-        $discountedPrice -= ($product->price * ($category->percentage / 100));
-    }
-
-    // Verifica si hay un descuento en el producto y lo aplica
-    if ($product->discount > 0) {
-        $discountedPrice -= ($product->price * ($product->discount / 100));
-    }
-
-    // Asegura que el precio no sea negativo
-    $discountedPrice = max($discountedPrice, 0);
-    @endphp
-
-    @if ($discountedPrice < $product->price)
-        <span class="price">${{ number_format($discountedPrice, 2) }} MXN</span>
-        <del>${{ number_format($product->price, 2) }} MXN</del>
-        <div class="on_sale">
-            <span>@lang('products.discount'): {{ $product->category->percentage }}%</span>
-        </div>
-    @else
-        <span class="price">${{ number_format($product->price, 2) }} MXN</span>
-    @endif
+  
 </div>
 
                         <div class="rating_wrap">
@@ -251,33 +225,7 @@
                             <div class="product_info">
                                 <h6 class="product_title"><a href="{{ url('product_detail/'.$product->id)}}">{{ $product->name }}</a></h6>
                                 <div class="product_price">
-    @php
-    // Inicializa el precio con el precio base del producto
-    $discountedPrice = $product->price;
-
-    // Verifica si hay un descuento en la categoría y lo aplica
-    if ($product->category->percentage > 0) {
-        $discountedPrice -= ($product->price * ($category->percentage / 100));
-    }
-
-    // Verifica si hay un descuento en el producto y lo aplica
-    if ($product->discount > 0) {
-        $discountedPrice -= ($product->price * ($product->discount / 100));
-    }
-
-    // Asegura que el precio no sea negativo
-    $discountedPrice = max($discountedPrice, 0);
-    @endphp
-
-    @if ($discountedPrice < $product->price)
-        <span class="price">${{ number_format($discountedPrice, 2) }} MXN</span>
-        <del>${{ number_format($product->price, 2) }} MXN</del>
-        <div class="on_sale">
-            <span>@lang('products.discount'): {{ $product->category->percentage }}%</span>
-        </div>
-    @else
-        <span class="price">${{ number_format($product->price, 2) }} MXN</span>
-    @endif
+   
 </div>
 
                                 <div class="rating_wrap">

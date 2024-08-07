@@ -9,7 +9,7 @@ return [
      'login' => 'Iniciar Sesión',
      'register' => 'Registrarse',
      'hello' => 'Hola,',
-     'cart' => 'Ir al Carrito',
+
      'logout' => 'Cerrar Sesión',
 
      'menu' => 'Menú',

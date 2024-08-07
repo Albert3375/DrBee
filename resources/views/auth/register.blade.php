@@ -1,3 +1,5 @@
+
+
 @extends('web.partials.master')
 
 @section('title', 'Regístrate')
@@ -51,9 +53,9 @@
                                         <label for="phone" class="col-md-4 col-form-label text-md-right">Teléfono</label>
 
                                         <div class="col-md-6">
-                                            <input id="phone" type="tel" class="form-control @error('phone') is-invalid @enderror" name="phone" value="{{ old('phone') }}" required autocomplete="phone">
+                                            <input id="phone" type="phone" class="form-control @error('phone') is-invalid @enderror" name="phone" value="{{ old('phone') }}" required autocomplete="phone">
 
-                                            @error('email')
+                                            @error('phone')
                                                 <span class="invalid-feedback" role="alert">
                                                     <strong>{{ $message }}</strong>
                                                 </span>
@@ -61,21 +63,33 @@
                                         </div>
                                     </div>
 
-                                    <div class="form-group row">
-                                        <label for="password" class="col-md-4 col-form-label text-md-right">@lang('login.password')</label>
+        
 
-                                        <div class="col-md-6">
-                                            <input id="password" type="password" maxlength="6" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password">
-                                        </div>
-                                    </div>
 
-                                    <div class="form-group row">
-                                        <label for="password-confirm" class="col-md-4 col-form-label text-md-right">@lang('login.confirm')</label>
+                                    <div class="row mb-3">
+                            <label for="password" class="col-md-4 col-form-label text-md-end">{{ __('Password') }}</label>
 
-                                        <div class="col-md-6">
-                                            <input id="password-confirm" type="password" maxlength="6" class="form-control" name="password_confirmation" required autocomplete="new-password">
-                                        </div>
-                                    </div>
+                            <div class="col-md-6 position-relative">
+                                <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password">
+                                <i class="password-toggle-icon unicons uil-eye"></i>
+
+                                @error('password')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                        </div>
+
+                        <div class="row mb-3">
+                            <label for="password-confirm" class="col-md-4 col-form-label text-md-end">{{ __('Confirm Password') }}</label>
+
+                            <div class="col-md-6">
+                                <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password">
+                            </div>
+                        </div>
+
+                               
 
                                     <div class="form-group row mb-0">
                                         <div class="col-md-6 offset-md-4">

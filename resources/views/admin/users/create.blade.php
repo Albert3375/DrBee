@@ -1,4 +1,4 @@
-@extends('admin.styles')
+@extends('adminlte::page')
 
 @section('content')
 

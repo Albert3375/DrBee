@@ -16,7 +16,7 @@ return [
     |
     */
 
-    'name' => env('APP_NAME', 'ZoofishEcommerce'),
+    'name' => env('APP_NAME', 'Farmcia Economica Dr.Bee'),
 
     /*
     |--------------------------------------------------------------------------

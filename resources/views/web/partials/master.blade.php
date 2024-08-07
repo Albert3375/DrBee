@@ -6,16 +6,16 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="author" content="IA Society" />
-    <meta name="copyright" content="Zoofish" />
+    <meta name="author" content="Alberto Mendez" />
+    <meta name="copyright" content="Dr.Bee" />
     <meta name="apple-mobile-web-app-capable" content="yes" />
-    <meta name="keywords" content="Zoofish, IA Society"/>
+    <meta name="keywords" content="Dr.Bee, Alberto Mendez"/>
     <meta name="robots" content="index,follow" />
-    <meta name="description" content="Zoofish" />
+    <meta name="description" content="Dr.Bee" />
     <meta name="distribution" content="global" />
     <meta name="resource-type" content="document" />
 
-    <title> @yield('title') - Zoofish</title>
+    <title> @yield('title') - Dr.Bee</title>
     <link rel="icon" type="image/png" href="{{ asset('images/favicon.png')}}" />
 
     <link rel="stylesheet" href="{{asset('css/animate.css')}}">
@@ -211,14 +211,16 @@
 
 <body>
 
+
 <div class="preloader">
     <!-- Utiliza un archivo GIF como animación de carga -->
-    <img src="{{ asset('assets/images/loadingdog.gif') }}" alt="Cargando..."  >
+    <img src="{{ asset('assets/images/bee.gif') }}" alt="Cargando..." class="preloader-gif">
 </div>
 
 
+
 <style>
-  /* styles.css */
+
 .preloader {
     position: fixed;
     top: 0;
@@ -232,6 +234,15 @@
     z-index: 9999;
 }
 
+.preloader-gif {
+    width: 13%;
+    height: 23%;
+    max-width: 100%; /* Ajusta el tamaño máximo deseado */
+    max-height: 100%; /* Ajusta el tamaño máximo deseado */
+}
+
+
+
 
 </style>
  <!-- @yield('popup')  -->
@@ -242,7 +253,7 @@
 
   @include('web.partials.footer')
 
-<a href="https://api.whatsapp.com/send?phone=+525579429702&text=hola%21%20quisiera%20m%c3%a1s%20informaci%c3%b3n%20sobre%20zoofish%20😊❤️." class="float" target="_blank">
+<a href="https://wa.me/3332250942?text=%C2%A1Hola!%20Un%20momento%20y%20lo%20atenderemos."😊❤️." class="float" target="_blank">
     <i style="font-size: 40px; margin-top:10px;" class="fa fa-whatsapp" aria-hidden="true"></i>
   </a> 
 

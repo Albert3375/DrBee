@@ -1,144 +1,71 @@
 <!-- START HEADER -->
 <header class="header_wrap fixed-top dd_dark_skin transparent_header">
-    <div class="light_skin main_menu_uppercase">
+    <div class="main_menu_uppercase">
         <div class="container">
-            <nav class="navbar navbar-expand-lg">
-                <a href="{{ URL('/') }}">
-                    <img src="{{ asset('img/logo.png') }}" style="width: 250px !important; height: auto !important; max-width: 100%; padding-bottom: 15px; padding-top: 5px">
+            <nav class="navbar navbar-expand-lg navbar-dark">
+                <!-- Logo -->
+                <a href="{{ URL('/') }}" class="navbar-brand">
+                    <img src="{{ asset('img/bee.jpg') }}" alt="Logo" class="logo-img">
                 </a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse"
-                    data-target="#navbarSupportedContent" aria-expanded="false">
-                    <span class="ion-android-menu"></span>
+                
+                <!-- Toggle Button -->
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
                 </button>
-                <div class="collapse navbar-collapse" style="justify-content: flex-end" id="navbarSupportedContent">
-                    <ul class="navbar-nav">
 
-                        <li align="center"> <a class="nav-link active" href="{{ url('/') }}">
-                            @lang('menu.home')
-                        </a></li>
+                <!-- Navbar Links -->
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav ml-auto">
+                        <!-- Home -->
+                        <li class="nav-item">
+                            <a class="nav-link active" href="{{ url('/') }}">@lang('menu.home')</a>
+                        </li>
 
-                       {{--  <li align="center"> <a class="nav-link" href="{{ URL('/express_purchase') }}">
-                            @lang('menu.products')
+                        <!-- Products -->
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ URL('/products') }}">@lang('menu.products')</a>
+                        </li>
 
-                            @lang('menu.express')
-                        </a></li> --}}
+                        <!-- Contact -->
+                        <li class="nav-item">
+                            <a class="nav-link" href="#contacto">@lang('menu.contact')</a>
+                        </li>
 
-                       <li align="center"> <a class="nav-link" href="{{ URL('/products') }}">
-                            @lang('menu.products')
-                        </a></li> 
-
-                        <!-- <li align="center" class="dropdown">
-                            <a class="dropdown-toggle nav-link" href="#" data-toggle="dropdown">
-                             @lang('menu.products')
-                            </a>
-                            <div class="dropdown-menu dropdown-reverse">
-                                <ul align="center">
-                                    @php
-                                        $filters = \App\Models\Filter::get();
-                                    @endphp
-                                    @foreach($filters as $filter)
-                                    <li>
-                                        <a class="dropdown-item nav-link nav_item" href="{{ route('category_products', $filter->id) }}">
-                                           {{$filter->name}}
-                                        </a>
-                                    </li>
-                                    @endforeach
-                        
-                                </ul>
-                            </div>
-                        </li> -->
-
-                      <!--     <li align="center"> <a class="nav-link nav_item" href="{{ URL('outlet') }}">
-                            Outlet
-                        </a></li> -->
-
-                        <li align="center"> <a class="nav-link nav_item" href="{{ URL('contact') }}">
-                            @lang('menu.contact')
-                        </a></li>
-
+                        <!-- User Authentication -->
                         @if (Route::has('login'))
-    <li align="center">
-        @auth
-            <a class="nav-link" href="{{ url('/admin') }}">
-                <div style="display: flex; align-items: center;">
-                    <img src="{{ asset('profile_images/' . Auth::user()->profile_image) }}" alt="Perfil de {{ Auth::user()->name }}" style="width: 40px; height: 40px; border-radius: 50%; margin-right: 10px;">
-                    <span style="font-weight: bold;">@lang('menu.hello') {{ Auth::user()->name }}</span>
-                </div>
-            </a>
-        </li>
-    @else
-        <li align="center">
-            <a class="nav-link" href="{{ route('login') }}">
-                @lang('menu.login')
-            </a>
-        </li>
-        <li align="center">
-            <!-- @if (Route::has('register'))
-                <a class="nav-link" href="{{ route('register') }}">
-                    @lang('menu.register')
-                </a>
-            @endif -->
-        </li>
-    @endauth
-</li>
-@endif
-
-                        @if (isset($cart))
-                            <li align="center" class="dropdown cart_dropdown"><a class="nav-link cart_trigger" href="#"
-                                    data-toggle="dropdown"><i style="color: #002b4c;" class="linearicons-cart"></i><span
-                                        class="cart_count">{{ $cart->count() }}</span></a>
-                                <div class="cart_box dropdown-menu dropdown-menu-right">
-                                    <ul class="cart_list">
-                                        @php
-                                            $total = 0;
-                                        @endphp
-                                        @foreach ($cart as $id => $product)
-                                            <li align="center">
-                                                @php
-                                                    $subtotal = $product->quantity * $product->price;
-                                                    $total = $subtotal + $total;
-                                                @endphp
-                                                <a href="{{ url('removeItemCart/' . $product->product_id) }}" class="item_remove"><i
-                                                        class="ion-close"></i></a>
-                                                <a href="#"><img src="{{ $product->img }}"
-                                                        alt="cart_thumb1">{{ $product->name }}</a>
-                                                <span class="cart_quantity">{{ $product->quantity }} x <span
-                                                        class="cart_amount" id="subtotal-{{ $id }}"> <span
-                                                            class="price_symbole">$</span></span>{{ $subtotal }}</span>
-                                            </li>
-                                        @endforeach
-                                    </ul>
-                                    <div class="cart_footer">
-                                        <p class="cart_total"><strong>Subtotal:</strong> <span class="cart_price"> <span
-                                                    class="price_symbole">$</span>{{ $total }}</span></p>
-                                        <p class="cart_buttons"><a href="{{ url('checkout') }}"
-                                            class="btn btn-fill-out checkout">@lang('menu.cart')</a></p>
+                            @auth
+                                <li class="nav-item dropdown">
+                                    <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        <img src="{{ asset('profile_images/' . Auth::user()->profile_image) }}" alt="@lang('menu.profile_image', ['name' => Auth::user()->name])" class="rounded-circle profile-img">
+                                        @lang('menu.hello') {{ Auth::user()->name }}
+                                    </a>
+                                    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdown">
+                                        <a class="dropdown-item" href="{{ url('/admin') }}">@lang('Mi cuenta')</a>
+                                        <a class="dropdown-item" href="{{ URL('logout') }}">@lang('menu.logout')</a>
                                     </div>
-                                </div>
-                            </li>
-                        @else
-                            <li align="center" class="dropdown cart_dropdown"><a class="nav-link cart_trigger" href="#"
-                                    data-toggle="dropdown"><i class="linearicons-cart"></i><span
-                                        class="cart_count">0</span></a>
-                            </li>
+                                </li>
+                            @else
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{{ route('login') }}">@lang('menu.login')</a>
+                                </li>
+                                <!-- Uncomment if registration is enabled -->
+                                <!-- 
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{{ route('register') }}">@lang('menu.register')</a>
+                                </li>
+                                -->
+                            @endauth
                         @endif
-                        
-          <!--       <li align="center">
-                        <a class="nav-link" style="font-size: 20px; margin-top: -5px" href="{{url('setLanguage/es')}}">&#127474;&#127485;</a>
-                    </li>
 
-                    <li align="center">
-                        <a class="nav-link" style="font-size: 20px; margin-top: -5px" href="{{url('setLanguage/en')}}">&#x1F1FA;&#x1F1F8;</a>
-                    </li> -->
-
-                    @auth
-                    <li align="center">
-                         <a class="nav-link" style="font-size: 20px; margin-top: -5px;"href="{{ URL('logout') }}">
-                            <i class="linearicons-exit-right"></i>
-                          </a>
-                    </li>
-                    @endauth
-
+                        <!-- Language Switcher -->
+                        <!-- Uncomment if needed
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{url('setLanguage/es')}}">&#127474;&#127485;</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{url('setLanguage/en')}}">&#x1F1FA;&#x1F1F8;</a>
+                        </li>
+                        -->
                     </ul>
                 </div>
             </nav>
@@ -146,8 +73,130 @@
     </div>
 </header>
 <!-- END HEADER -->
-@push('script')
-    <script>
 
-    </script>
-@endpush
+<style>
+
+    /* General Styles */
+body {
+    font-family: 'Roboto', sans-serif;
+    background-color: #f4f4f9;
+    color: #333;
+}
+
+.header_wrap {
+    background-color: #002366; /* Azul rey */
+    border-bottom: 4px solid #FFD700; /* Amarillo */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    transition: background-color 0.3s ease;
+}
+
+.header_wrap:hover {
+    background-color: #001944; /* Darker Azul rey */
+}
+
+.main_menu_uppercase {
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+/* Logo Styles */
+.logo-img {
+    width: 300px;
+    height: auto;
+    padding-bottom: 10px;
+    transition: transform 0.3s ease, filter 0.3s ease;
+}
+
+.logo-img:hover {
+    transform: scale(1.1);
+    filter: brightness(1.2);
+}
+
+/* Navbar Styles */
+.navbar-dark .navbar-nav .nav-link {
+    color: #ffffff;
+    padding: 15px 20px;
+    transition: color 0.3s ease, background-color 0.3s ease;
+    font-weight: bold;
+    position: relative;
+    overflow: hidden;
+}
+
+.navbar-dark .navbar-nav .nav-link::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 2px;
+    background-color: #FFD700; /* Amarillo */
+    transform: scaleX(0);
+    transform-origin: right;
+    transition: transform 0.3s ease;
+}
+
+.navbar-dark .navbar-nav .nav-link:hover::before {
+    transform: scaleX(1);
+    transform-origin: left;
+}
+
+.navbar-dark .navbar-nav .nav-link.active,
+.navbar-dark .navbar-nav .nav-link:hover {
+    color: #002366;
+
+    border-radius: 20px;
+}
+
+.navbar-toggler {
+    border-color: #FFD700; /* Amarillo */
+    transition: transform 0.3s ease;
+}
+
+.navbar-toggler:hover {
+    transform: rotate(90deg);
+}
+
+.navbar-toggler-icon {
+    background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 30 30' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba%28255, 215, 0, 1%29' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E");
+}
+
+/* Dropdown Styles */
+.dropdown-menu {
+    background-color: #f4f4f9;
+    border: none;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, opacity 0.3s ease;
+    transform: translateY(-10px);
+    opacity: 0;
+}
+
+.nav-item.dropdown:hover .dropdown-menu {
+    transform: translateY(0);
+    opacity: 1;
+}
+
+.dropdown-item {
+    color: #333;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.dropdown-item:hover {
+    background-color: #FFD700;
+    color: #002366;
+}
+
+/* Profile Image */
+.profile-img {
+    width: 40px;
+    height: 40px;
+    margin-right: 10px;
+    border: 2px solid #FFD700;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+}
+
+.profile-img:hover {
+    transform: scale(1.1);
+}
+
+</style>

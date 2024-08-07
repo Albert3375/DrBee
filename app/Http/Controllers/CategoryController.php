@@ -25,7 +25,7 @@ class CategoryController extends Controller
     {
         $categories = new Category();
         $categories->name = $request->name;
-        $categories->percentage = $request->percentage;
+ 
         $categories->save();
 
         return redirect('admin/categories');
@@ -43,7 +43,7 @@ class CategoryController extends Controller
     {
         $category = Category::where('id', $id)->get()->first();
         $category->name = $request->name;
-        $category->percentage = $request->percentage;
+   
         $category->save();
 
         $categories = Category::latest()->get();

@@ -129,14 +129,7 @@
               </div>
             </div>
 
-            <div class="form-group row">
-    <label class="col-md-3 col-form-label" for="text-input" required>@lang('panel.percentage')</label>
-    <div class="col-md-9">
-    <input class="form-control" min="0" max="100" required id="text-input" type="number" value="{{ $method == 'EDIT' ? $category->percentage : '0' }}" name="percentage">
-
-    </div>
-</div>
-
+    
 
           {{--   <div class="form-group row">
               <label class="col-md-3 col-form-label" for="img">Imagen del Producto M&aacute;x. 2MB</label>

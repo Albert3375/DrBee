@@ -69,7 +69,7 @@
                           <tr align="center">
                               <th>ID</th>
                               <th>@lang('panel.name')</th>
-                              <th>@lang('panel.percentage')</th>
+                            
                               <th>@lang('panel.register_date')</th>
                               <th>@lang('panel.actions')</th>
                           </tr>
@@ -79,7 +79,7 @@
                               <tr align="center">
                                 <td>{{ $category->id }}</td>
                                 <td>{{ $category->name }}</td>
-                                <td>{{ $category->percentage }}%</td>
+                           
                                 <td>{{ $category->created_at }}</td>
                                 <td>
                                   <ul class="list-inline" style="margin: 0px;">
@@ -135,7 +135,7 @@
       </div>
     </div>
 
-@push('script')
+
   <script>
      @if(App::isLocale('es'))
           $('#table-categories').DataTable({
@@ -179,6 +179,6 @@
     });
 </script>
 
-  @endpush
+
 
 @endsection

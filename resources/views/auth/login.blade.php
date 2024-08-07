@@ -16,7 +16,7 @@
                             <div class="padding_eight_all bg-white"  style="border-radius: 28px;">
                                  <div class="col-md-12" align="center">
                                     <a href="{{ URL('/') }}">
-                                        <img src="{{ asset('img/logo.png') }}" style="width: auto !important; height: auto !important; max-width: 75%; padding-bottom: 15px; padding-top: 5px">
+                                        <img src="{{ asset('img/bee.jpg') }}" style="width: auto !important; height: auto !important; max-width: 105%; padding-bottom: 25px; padding-top: 5px">
                                     </a>
                                 </div>
                                 <div class="heading_s1">

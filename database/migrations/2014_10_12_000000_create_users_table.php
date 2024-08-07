@@ -20,9 +20,7 @@ class CreateUsersTable extends Migration
             $table->string('phone')->nullable();
             $table->string('conekta_customer_id')->nullable();
             $table->string('email')->unique();
-            $table->string('rfc')->unique();
-            $table->string('clave_sae')->unique()->nullable(); // Permitir valores nulos
-            $table->json('tags')->nullable();
+            $table->string('rfc')->nullable(); // O el tipo de datos que necesites
             $table->string('member_code')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');

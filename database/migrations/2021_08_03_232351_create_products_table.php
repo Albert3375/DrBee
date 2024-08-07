@@ -7,7 +7,7 @@ use Illuminate\Support\Facades\Schema;
 class CreateProductsTable extends Migration
 {
     /**
-     * Run the migrations.
+     * Ejecutar las migraciones.
      *
      * @return void
      */
@@ -18,18 +18,16 @@ class CreateProductsTable extends Migration
             $table->string('name');
             $table->longText('description');
             $table->longText('image')->nullable();
-            $table->unsignedInteger('category_id');
-            $table->unsignedDecimal('price',8,2);
-            $table->string('clave_sae')->unique(); // Permitir valores nulos
-            $table->unsignedInteger('discount')->nullable();
             $table->integer('stock');
+            $table->boolean('is_active')->default(true);
+            $table->foreignId('category_id'); // Elimina la restricción de clave foránea aquí
             $table->timestamps();
             $table->softDeletes();
         });
     }
 
     /**
-     * Reverse the migrations.
+     * Revertir las migraciones.
      *
      * @return void
      */

@@ -119,8 +119,6 @@
         left: 25px;
     }
 </style>
-
-
 </head>
 <body class="light-mode">
     <div class="container">
@@ -132,18 +130,18 @@
                         <div class="mode-switch-slider"></div>
                     </label>
                     <div class="card-header">
-                        <h3>Registro Productos</h3>
+                        <h3>{{ $method == 'EDIT' ? 'Editar Producto' : 'Registro Productos' }}</h3>
                     </div>
                     <div class="card-body">
-                       
+                        <form method="POST" action="{{ $method == 'EDIT' ? route('admin.products.update', $product->id) : route('admin.products.store') }}" enctype="multipart/form-data">
+                            @csrf
+                            @if($method == 'EDIT')
+                                @method('PUT')
+                            @endif
                             <div class="form-row">
                                 <div class="form-group col-md-6">
                                     <label for="name">Nombre</label>
                                     <input type="text" class="form-control" id="name" value="{{ $method == 'EDIT' ? $product->name : '' }}" name="name" required>
-                                </div>
-                                <div class="form-group col-md-6">
-                                    <label for="price">Precio</label>
-                                    <input type="number" class="form-control" min="0" step="0.01" id="price" value="{{ $method == 'EDIT' ? $product->price : '' }}" name="price" required>
                                 </div>
                             </div>
                             <div class="form-group">
@@ -158,17 +156,34 @@
                                 <input class="form-control-file" type="file" id="image" name="image">
                             </div>
                             <div class="form-group">
-                                <label for="category">Categoría</label>
-                                {!! Form::select('category_id', $category, 0, ['class'=>'form-control']) !!}
-                            </div>
-                            <div class="form-group">
                                 <label for="stock">Stock de Productos</label>
                                 <input type="number" class="form-control" min="0" id="stock" value="{{ $method == 'EDIT' ? $product->stock : '' }}" name="stock" required>
                             </div>
                             <div class="form-group">
-                                <label for="clave_sae">Cliente SAE</label>
-                                <input type="text" class="form-control" id="clave_sae" value="{{ old('clave_sae') }}" name="clave_sae" required>
+                                <label for="category_id">Categoría</label>
+                                <select class="form-control" id="category_id" name="category_id" required>
+                                    <option value="">Selecciona una categoría</option>
+                                    @foreach($categories as $category)
+                                        <option value="{{ $category->id }}" {{ $method == 'EDIT' && $product->category_id == $category->id ? 'selected' : '' }}>
+                                            {{ $category->name }}
+                                        </option>
+                                    @endforeach
+                                </select>
                             </div>
+
+                            <!-- Nuevo campo para seleccionar entre Patente y Genérico -->
+                            <div class="form-group">
+                                <label>Tipo de Producto</label><br>
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="radio" name="product_type" id="patentado" value="patentado" {{ $method == 'EDIT' && $product->product_type == 'patentado' ? 'checked' : '' }} required>
+                                    <label class="form-check-label" for="patentado">Patente</label>
+                                </div>
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="radio" name="product_type" id="generico" value="generico" {{ $method == 'EDIT' && $product->product_type == 'generico' ? 'checked' : '' }} required>
+                                    <label class="form-check-label" for="generico">Genérico</label>
+                                </div>
+                            </div>
+
                             @php
                                 $now = Carbon\Carbon::now();
                                 $date_formated = Carbon\Carbon::parse($now)->format('d-m-Y');
@@ -177,17 +192,13 @@
                                 <label for="created_at">Fecha de Registro</label>
                                 <input type="text" class="form-control" id="created_at" value="{{ $method == 'EDIT' ? $product->created_at : $date_formated }}" name="created_at" readonly>
                             </div>
-                           
-                
-             
-          </div>
+                            <button type="submit" class="btn btn-primary">{{ $method == 'EDIT' ? 'Actualizar Producto' : 'Registrar Producto' }}</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
         </div>
-        </div>
-
-        <div class="col-md-2"></div>
-      </div>
     </div>
-  </div>
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>

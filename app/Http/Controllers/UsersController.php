@@ -44,16 +44,14 @@ class UsersController extends Controller
         $user->surname = $request->surname;
         $user->email = $request->email;
         $user->phone = $request->phone;
-        $user->rfc = $request->rfc;
+   
         $tags = explode(',', $request->tags);
 
         if (count($tags) > 5) {
             return redirect()->back()->with('error', 'No puedes guardar más de 5 etiquetas.');
         }
         
-        $user->tags = json_encode($tags);
-        
-        $user->clave_sae = $request->clave_sae; 
+ 
         $user->password = bcrypt($request->password);
         $user->member_code = $this->claveGenerator(); // Genera un valor para member_code
    
@@ -145,7 +143,7 @@ class UsersController extends Controller
     if (count($tags) > 5) {
         return redirect()->back()->with('error', 'No puedes guardar más de 5 etiquetas.');
     }
-    $user->tags = json_encode($tags);
+ 
 
 
     if ($request->hasFile('profile_image')) {
@@ -166,15 +164,22 @@ class UsersController extends Controller
 
     public function destroy($id)
     {
-        DB::table('users')->where('id', $id)->delete();
-
+        // Puedes ajustar esto según tus necesidades exactas
+        // En lugar de borrarlo, se puede cambiar un campo 'activo' a false o similar
+        // Esto depende de cómo quieras manejar los usuarios "eliminados" en tu sistema
+    
+        // Ejemplo de marcar como inactivo
+        $user = User::find($id);
+        $user->delete(); // Esto borra físicamente el registro
+    
         $users = User::latest()->get();
         $myid = Auth::user()->id;
-
+    
         flash('Usuario eliminado correctamente.')->success()->important();
-
+    
         return view('admin.users.index', compact('users', 'myid'));
     }
+    
 
     private function claveGenerator()
     {

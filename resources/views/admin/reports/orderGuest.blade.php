@@ -6,182 +6,219 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Orden de Compra - #{{$order->id}}</title>
 
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700,800,900" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css?family=Playfair+Display:400,400i,700,700i,900,900i&display=swap" rel=" stylesheet">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <!-- FontAwesome CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        @page {
+            margin: 2cm;
+        }
+        @media print {
+            body {
+                margin: 1cm;
+            }
+        }
+
+        body {
+            font-family: 'Roboto', sans-serif;
+            color: #333;
+            background-color: #f4f7f9;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container-fluid {
+            background: #ffffff;
+            border-radius: 12px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+            padding: 30px;
+            border: 1px solid #ddd;
+        }
+
+        .header-logo img {
+            max-width: 60%;
+            height: auto;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .header-details {
+            margin-top: -60px;
+            text-align: right;
+        }
+
+        h2 {
+            color: #007bff;
+            font-size: 32px;
+            margin-bottom: 15px;
+            font-weight: 700;
+        }
+
+        h3 {
+            color: #28a745;
+            font-size: 28px;
+            font-weight: 600;
+        }
+
+        p {
+            line-height: 1.8;
+            font-size: 16px;
+            margin: 10px 0;
+        }
+
+        .table {
+            margin-top: 20px;
+            border-collapse: collapse;
+            width: 100%;
+            background: #ffffff;
+            border-radius: 8px;
+            overflow: hidden;
+            border: 1px solid #ddd;
+        }
+
+        .table th, .table td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+            font-size: 14px;
+        }
+
+        .table thead {
+            background-color: #007bff;
+            color: #ffffff;
+        }
+
+        .table tbody tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+
+        .table tbody tr:hover {
+            background-color: #e2e6ea;
+        }
+
+        .table tfoot {
+            background-color: #f1f3f5;
+            font-weight: 700;
+        }
+
+        .text-primary {
+            color: #007bff !important;
+        }
+
+        .text-success {
+            color: #28a745 !important;
+        }
+
+        .font-weight-bold {
+            font-weight: 700;
+        }
+
+        .footer-contact p {
+            font-size: 14px;
+            margin: 5px 0;
+        }
+
+        .footer-contact p a {
+            color: #007bff;
+            text-decoration: none;
+        }
+
+        .footer-contact p a:hover {
+            text-decoration: underline;
+        }
+
+        .sp-header {
+            margin-bottom: 20px;
+        }
+
+        .sp-header-text-order {
+            margin: auto;
+        }
+
+        .sp-title {
+            font-size: 20px;
+            color: #007bff;
+            margin-bottom: 20px;
+            font-weight: 700;
+        }
+
+        .sp-subtitle {
+            font-size: 16px;
+            color: #333;
+            margin-bottom: 15px;
+        }
+
+        .highlight {
+            color: #ff9300;
+            font-weight: 600;
+        }
+
+        .row::after {
+            content: "";
+            display: table;
+            clear: both;
+        }
+
+        .footer-logo img {
+            max-width: 80%;
+            height: auto;
+            margin-top: 10px;
+        }
+
+        .footer-contact {
+            border-top: 1px solid #ddd;
+            padding-top: 20px;
+            margin-top: 20px;
+        }
+    </style>
 </head>
+<body>
 
-<style>
-    @page {
-        margin-top: 1.5cm;
-        margin-bottom: 1.5cm;
-        margin-left: 1.5cm;
-        margin-right: 1.5cm;
-    }
-    @media print {
-        body {margin-top: 0.5mm; margin-bottom: 0.5mm;
-            margin-left: 0.5mm; margin-right: 0.5mm}
-        }
-        div .attendance{
-            border: 1px solid;
-            font-family: 'Poppins'; 
-        }
-        p{
-            line-height: 95%;
-            font-size: 20px;
-            font-family: 'Poppins'; 
-        }
-        h2{
-            line-height: 60%;
-            font-family: 'Poppins'; 
-        }
-        h3{
-            line-height: 60%;
-            font-size: 18px;
-            font-family: 'Poppins'; 
-        }
-        h4{
-            line-height: 60%;
-            font-size: 20px;
-            font-family: 'Poppins'; 
-        }
-        h5{
-            line-height: 60%;
-            font-size: 18px;
-            font-family: 'Poppins'; 
-        }
-        .text{
-            font-family: 'Poppins';
-        }
-        th, td, tr {
-          font-family: 'Poppins';
-          padding: 5px;
-          font-size: 14px;
-          text-align: center;
-          border-width: 0.5;
-          border-style: solid;
-      }
-
-      .text{
-/*     font-family: 'Poppins'; */
-}
-/* th, td, tr {
-        padding: 5px;
-        font-size: 15px;
-        text-align: center;
-        border-width: 0.5;
-        border-style: solid;
-    } */
-
-    .sp-contenedor {
-    /* background-color: #D0D3D4;
-    max-width: 1000px;
-    margin: 15px auto; */
-}
-
-.sp-header {
-    /* display: flex;
-    flex-wrap: wrap; */
-}
-
-.sp-img {
-    /* width: auto !important; 
-    height: auto !important; 
-    max-width: 25%; */
-}
-
-hr {
-    /* margin: 10px; */
-}
-
-.sp-header-text-order {
-    /* margin: auto;
-    display: table; */
-}
-
-.sp-header-text {
-    /* margin: auto;
-    flex: auto;
-    padding-left: 15px; */
-} 
-
-.sp-header-img {
-    /* margin: auto;
-    display: contents; */
-}
-
-hr {
-    margin: 0px;
-}
-
-.sp-p {
-    margin-bottom: 5px;
-}
-
-.table td, .table th {
-    padding: 0.0rem;
-    vertical-align: top;
-    border-top: 1px solid #dee2e6;
-    padding-left: 4px;
-    font-family: 'Poppins';
-}
-
-.sp-title {
-    font-size: 16px;
-    font-family: 'Poppins';
-}
-
-.sp-subtitle {
-    font-size: 14px;
-    font-family: 'Poppins';
-}
-</style>
-
-<body style="font-family: 'Poppins';">
-
- <div class="container-fluid">
-    <div class="row">
-        <div class="col-md-5" align="left">
-            <img src="img/zoofish-pets.png" style="width: auto !important; height: auto !important; max-width: 50%;">
+<div class="container-fluid">
+    <div class="row sp-header">
+        <div class="col-md-5 header-logo">
+            <img src="img/zoofish-pets.png" alt="Logo">
         </div>
-        <div class="col-md-7" align="right" style="margin-top: -100px;">
-            <!-- <h2>Pedido #{{$order->id}}</h2> -->
-            <h2>Número de pedido: <span style="color: #ff9300;"><b>#{{$order->id}}</b></span></h2>
+        <div class="col-md-7 header-details">
+            <h2>Orden de Compra: <span class="highlight">#{{$order->id}}</span></h2>
             @php
             $now = \Carbon\Carbon::now();
-            @endphp 
+            @endphp
             <h5>{{$order->created_at}}</h5>
         </div>
-        <div class="col-md-12" align="center">
+        <div class="col-md-12 text-center">
             <h5>EN CASO DE REQUERIR <br> FACTURA SOLICITARLA</h5>
-            <h3 style="color: limegreen;">TOTAL DE LA COMPRA: </h3><h3>${{ number_format($order->total,2)}}</h3>
+            <h3 class="text-success">TOTAL DE LA COMPRA: </h3>
+            <h3>${{ number_format($order->total,2)}}</h3>
         </div>
     </div>
 
     <div class="row">
-        <div class="col-md-5" style="float: right;">
-            <p class="sp-p sp-title" style="color: #ff9300;">Dirección del pedido</p>
-            <p class="sp-p sp-subtitle"><b>Dirección:</b> {{$order->billing_address}}</p>
-            <p class="sp-p sp-subtitle"><b>Ciudad:</b> {{$order->city}}</p>
-            <p class="sp-p sp-subtitle"><b>C.P:</b> {{$order->zipcode}}</p>
+        <div class="col-md-5">
+            <p class="sp-title">Dirección del pedido</p>
+            <p><b>Dirección:</b> {{$order->billing_address}}</p>
+            <p><b>Ciudad:</b> {{$order->city}}</p>
+            <p><b>C.P:</b> {{$order->zipcode}}</p>
         </div>
         <div class="col-md-7">
-            <p class="sp-p sp-title" style="color: #ff9300;">Datos del cliente</p>
-            <p class="sp-p sp-subtitle"><b>Nombre:</b> {{$order->fname}} {{$order->lname}}</p>
-            <p class="sp-p sp-subtitle"><b>Correo:</b> {{$order->email}}</p>
-            <p class="sp-p sp-subtitle"><b>Teléfono:</b> {{$order->phone}}</p>
+            <p class="sp-title">Datos del cliente</p>
+            <p><b>Nombre:</b> {{$order->fname}} {{$order->lname}}</p>
+            <p><b>Correo:</b> {{$order->email}}</p>
+            <p><b>Teléfono:</b> {{$order->phone}}</p>
         </div>
-
     </div>
 
-    <!-- Datos de la orden -->
     <div class="row">
-        <div class="col-md-12" align="center">
-            <p class="sp-p sp-title" style="color: #ff9300;">Productos del pedido</p>
-            <table id="table-orders" class="table table-dark" style="width:100%">
-                <thead class="thead-dark">
-                    <tr class="sp-subtitle">
+        <div class="col-md-12 text-center">
+            <p class="sp-title">Productos del pedido</p>
+            <table id="table-orders" class="table table-striped">
+                <thead>
+                    <tr>
                         <th>Producto</th>
                         <th>Cantidad</th>
                         <th>Descuento</th>
@@ -189,127 +226,94 @@ hr {
                     </tr>
                 </thead>
                 <tbody>
-                    @php 
+                    @php
                     $totalPiezas = 0;
                     @endphp
                     @foreach (json_decode($order->products) as $product)
-                    @php 
-                    $totalPiezas = $totalPiezas + $product->quantity;
+                    @php
+                    $totalPiezas += $product->quantity;
                     @endphp
-                    <tr class="sp-subtitle">
+                    <tr>
                         <td>{{$product->name}}</td>
                         <td>{{$product->quantity}}</td>
                         <td>{{$product->discount}}</td>
                         <td>${{ number_format($product->price,2)}} MXN</td>
-                        <!-- <td><img src="{{ asset($product->img) }}" style="width: 150px !important; height: 150px !important; max-width: 60%"></td>  -->
                     </tr>
                     @endforeach
-                        <!-- <tr style="font-size: 12px;">
-                            <th style="border: none;" colspan="2"></th>
-                            <th style="color: #ff9300;" colspan="2"></th>
-                        </tr>
-                        <tr style="font-size: 12px;">
-                            <th colspan="2">Total productos</th>
-                            <th style="color: #ff9300;" colspan="2">{{ count($products) }} Productos</th>
-                        </tr>
-                        <tr style="font-size: 12px;">
-                            <th colspan="2">Total piezas</th>
-                            <th style="color: #ff9300;" colspan="2">{{ $totalPiezas }} Piezas</th>
-                        </tr>
-                        <tr style="font-size: 12px;">
-                            <th colspan="2">Subtotal</th>
-                            <th style="color: #ff9300;" colspan="2">${{ number_format($order->total, 2) }}</th>
-                        </tr>
-                        <tr style="font-size: 12px;">
-                            <th colspan="2">Envío</th>
-                            <th style="color: #ff9300;" colspan="2">Envío gratuito</th>
-                        </tr>
-                        <tr style="font-size: 12px;">
-                            <th colspan="2">Metodo de pago</th>
-                            <th style="color: #ff9300;" colspan="2">{{$order->payment_method}}</th>
-                        </tr> -->
-                        
-                    </tbody>
-                </table>
-            </div>
-
-        </div>
-
-    <div class="row" style="margin-top: 10px;">
-        <div class="col-md-12" align="center">
-            <p class="sp-p sp-title" style="color: #ff9300;">Resumen del pedido</p>
-            <table id="table-orders" class="table" style="width:100%;">
-                <tbody>
-                    <tr class="sp-subtitle">
-                        <th colspan="3">Total productos</th>
-                        <th style="color: #ff9300; font-weight: 400;" colspan="1">{{ count($products) }} Productos</th>
-                    </tr>
-                    <tr class="sp-subtitle">
-                        <th colspan="3">Total piezas</th>
-                        <th style="color: #ff9300; font-weight: 400;" colspan="1">{{ $totalPiezas }} Piezas</th>
-                    </tr>
-                    <tr class="sp-subtitle">
-                        <th colspan="3">Subtotal</th>
-                        <th style="color: #ff9300; font-weight: 400;" colspan="1">${{ number_format($order->total, 2) }} MXN</th>
-                    </tr>
-                    <tr class="sp-subtitle">
-                        <th colspan="3">Envío</th>
-                        <th style="color: #ff9300; font-weight: 400;" colspan="1">Envío gratuito</th>
-                    </tr>
-                    <tr class="sp-subtitle">
-                        <th colspan="3">Método de pago</th>
-                        <th style="color: #ff9300; font-weight: 400;" colspan="1">{{$order->payment_method}}</th>
-                    </tr>
                 </tbody>
             </table>
         </div>
     </div>
 
     <div class="row">
-        <div class="col-md-6" align="left">
-            <p class="sp-p sp-title" style="color: #ff9300;">Contacto</p>
-            <p class="sp-p sp-subtitle">
-                ventas@zoofish.com.mx
-            </p>
-            <p class="sp-p sp-subtitle">
-            Imprenta 205 Locales 10 y 11.</p>
-            <p class="sp-p sp-subtitle">Col. Morelos, Alcaldia Venustiano Carranza.</p>
-            <p class="sp-p sp-subtitle">Ciudad de Mexico, Mexico. C.P. 15270.</p>
+        <div class="col-md-12 text-center">
+            <p class="sp-title">Resumen del pedido</p>
+            <table class="table table-bordered">
+                <tbody>
+                    <tr>
+                        <th>Total productos</th>
+                        <td>{{ count($products) }} Productos</td>
+                    </tr>
+                    <tr>
+                        <th>Total piezas</th>
+                        <td>{{ $totalPiezas }} Piezas</td>
+                    </tr>
+                    <tr>
+                        <th>Subtotal</th>
+                        <td>${{ number_format($order->total, 2) }} MXN</td>
+                    </tr>
+                    <tr>
+                        <th>Envío</th>
+                        <td>Envío gratuito</td>
+                    </tr>
+                    <tr>
+                        <th>Método de pago</th>
+                        <td>{{$order->payment_method}}</td>
+                    </tr>
+                </tbody>
+            </table>
         </div>
+    </div>
 
-        <div class="col-md-6" align="right" style="margin-top: -100px;">
+    <div class="row footer-contact">
+        <div class="col-md-6">
+            <p class="sp-title">Contacto</p>
+            <p><a href="mailto:ventas@zoofish.com.mx">ventas@zoofish.com.mx</a></p>
+            <p>Imprenta 205 Locales 10 y 11.</p>
+            <p>Col. Morelos, Alcaldía Venustiano Carranza.</p>
+            <p>Ciudad de México, México. C.P. 15270.</p>
+        </div>
+        <div class="col-md-6 text-right">
             @php
             $now = \Carbon\Carbon::now();
             @endphp
-            <br>
-            <br>
-            <p class="sp-p sp-subtitle">Fecha de impresión: {{$now}}</p>
+            <p>Fecha de impresión: {{$now}}</p>
         </div>
     </div>
 </div>
 
 @push('script')
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/buttons/1.7.1/js/dataTables.buttons.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.2.2/jszip.min.js"></script>
+<script src="https://cdn.datatables.net/buttons/1.7.1/js/buttons.html5.min.js"></script>
+<script src="https://cdn.datatables.net/buttons/1.7.1/js/buttons.print.min.js"></script>
+
 <script>
-     @if(App::isLocale('es'))
-     $('#table-orders').DataTable({
-        "language": {
-            "url": "//cdn.datatables.net/plug-ins/1.11.3/i18n/es-mx.json"
-        },
-        "responsive": true,
-        "bSort": false,
-        "buttons": ['csv', 'excel', 'pdf', 'print']
+    $(document).ready(function() {
+        $('#table-orders').DataTable({
+            "language": {
+                "url": "{{ App::isLocale('es') ? '//cdn.datatables.net/plug-ins/1.11.3/i18n/es-mx.json' : '//cdn.datatables.net/plug-ins/1.11.3/i18n/en-gb.json' }}"
+            },
+            "responsive": true,
+            "bSort": false,
+            "dom": 'Bfrtip',
+            "buttons": ['csv', 'excel', 'pdf', 'print']
+        });
     });
-     @else
-     $('#table-orders').DataTable({
-        "language": {
-            "url": "//cdn.datatables.net/plug-ins/1.11.3/i18n/en-gb.json"
-        },
-        "responsive": true,
-        "bSort": false,
-        "buttons": ['csv', 'excel', 'pdf', 'print']
-    });
-     @endif
 </script>
 @endpush
+
 </body>
 </html>

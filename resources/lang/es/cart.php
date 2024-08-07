@@ -37,8 +37,7 @@ return [
      'phone' => 'Teléfono*',
      'email' => 'Correo*',
      'continue' => 'Continuar Comprando',
-     'empty' => 'Vaciar Carrito',
-     'cart' => 'Carrito de Compras',
+  
 
      'express' => 'Compra Express',
      'search' => 'Buscar Producto',

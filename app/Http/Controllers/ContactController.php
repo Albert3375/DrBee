@@ -2,44 +2,38 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Support\Facades\Mail;
-use App\Mail\ContactFormMail;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Mail;
 
 class ContactController extends Controller
 {
- 
-        public function index()
-        {
-            return view('web.contacto');
-        }
-    
-        public function sendContactForm(Request $request)
-        {
-            // Validación de datos aquí (si es necesario)
-            $validator = Validator::make($request->all(), [
-                'name' => 'required',
-                'email' => 'required|email',
-                'subject' => 'required',
-                'message' => 'required',
-            ]);
-    
-            if ($validator->fails()) {
-                return response()->json(['success' => false]);
-            }
-    
-            // Extraer el correo electrónico del campo 'email' del formulario
-            $recipientEmail = $request->input('email');
-    
-            // Enviar el correo electrónico al destinatario obtenido del formulario
-            Mail::to($recipientEmail)->send(new ContactFormMail($request));
-    
-            // Devuelve una respuesta JSON de éxito
-            return response()->json(['success' => true]);
-        }
-    }
-    
+    public function sendContactForm(Request $request)
+    {
+        // Validar los datos del formulario
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'email' => 'required|email',
+            'message' => 'required|string',
+        ]);
 
-       
-  
+        // Preparar los datos para el correo
+        $data = [
+            'name' => $request->input('name'),
+            'email' => $request->input('email'),
+            'message' => $request->input('message'),
+        ];
+
+        // Nombre personalizado para el remitente
+        $customSenderName = 'Nombre Personalizado';
+
+        // Enviar el correo al email proporcionado por el usuario
+        Mail::send('emails.contact', ['data' => $data], function ($message) use ($data, $customSenderName) {
+            $message->to($data['email'], $data['name']) // Enviar al correo proporcionado
+                ->subject('Gracias por contactarnos');
+            $message->from(config('mail.from.address'), $customSenderName); // Usar nombre personalizado
+        });
+
+        // Redirigir con mensaje de éxito
+        return redirect()->back()->with('success', 'Mensaje enviado exitosamente.');
+    }
+}

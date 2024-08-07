@@ -10,6 +10,9 @@ use App\Models\Warehouse;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ContactController;
+use App\Http\Controllers\Auth\RegisterController;
+use App\Http\Controllers\UsersController;
+
 
 
 /*
@@ -26,6 +29,13 @@ use App\Http\Controllers\ContactController;
 // Route::get('/master_class', function () {
 //     return view('master_class.index');
 // });
+Route::prefix('users')->group(function () {
+    Route::get('register', 'App\Http\Controllers\Users\RegisterController@showRegistrationForm')->name('register');
+    // O puedes usar un controlador diferente si lo deseas
+    // Route::get('register', [UserController::class, 'showRegistrationForm'])->name('register');
+});
+
+
 
 Route::get('setLanguage/{lang}','webPageController@setLanguage');
 
@@ -170,17 +180,33 @@ Route::get('status', 'PaymentController@getPaymentStatus');
 
 Route::post('get_best_seller_products/', 'ReportsController@getBestSellerProducts');
 
-
-Route::get('/contact', [ContactController::class, 'index'])->name('web.contacto');
-Route::post('/contact', [ContactController::class, 'sendContactForm'])->name('contact.send');
+Route::get('/contacto', 'App\Http\Controllers\ContactController@mostrarFormulario');
+Route::post('/contacto', 'App\Http\Controllers\ContactController@enviarMensaje');
 
 Route::get('/tags', 'TagController@index');
+// routes/web.php
+// En routes/web.php
+
+Route::post('/admin/products/inactivate/{id}', [ProductController::class, 'inactivate'])->name('admin.products.inactivate');
+Route::post('/admin/products/activate/{id}', [ProductController::class, 'activate'])->name('admin.products.activate');
+
+// En routes/web.php o routes/api.php
+Route::post('/cart/add', [OrdersController::class, 'addToCart'])->name('cart.add');
+
+Route::get('register', [RegisterController::class, 'showRegistrationForm'])->name('register');
+Route::post('register', [RegisterController::class, 'register']);
 
 //Cards
-// Route::post('addPaymentMethod','ConektaController@addPaymentMethod');
-// Route::post('addCard','ConektaController@addCard');
-// Route::delete('destroyCard','ConektaController@destroyCard')->name('admin.payments.destroy');
-// Route::get('getCardsByUser/{id}','ConektaController@getCardsByUser');
-// Route::post('addCustomer','ConektaController@addCustomer');
+ Route::post('addPaymentMethod','ConektaController@addPaymentMethod');
+ Route::post('addCard','ConektaController@addCard');
+ Route::delete('destroyCard','ConektaController@destroyCard')->name('admin.payments.destroy');
+ Route::get('getCardsByUser/{id}','ConektaController@getCardsByUser');
+ Route::post('addCustomer','ConektaController@addCustomer');
 
-// Route::post('/payWithConekta','ConektaController@payWithConekta');
+ Route::post('/payWithConekta','ConektaController@payWithConekta');
+
+ // web.php
+
+Route::get('/api/products', 'ProductController@getProductsByCategory');
+
+Route::post('/contact', [ContactController::class, 'sendContactForm'])->name('contact.send');

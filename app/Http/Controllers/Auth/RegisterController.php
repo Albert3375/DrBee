@@ -1,87 +1,72 @@
 <?php
-
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
-use App\Providers\RouteServiceProvider;
 use App\Models\User;
-use App\Models\Role;
-use App\Models\Session;
+use App\Models\Role; // Importar el modelo Role
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Http\Request;
 
 class RegisterController extends Controller
 {
-    /*
-    |--------------------------------------------------------------------------
-    | Register Controller
-    |--------------------------------------------------------------------------
-    |
-    | This controller handles the registration of new users as well as their
-    | validation and creation. By default this controller uses a trait to
-    | provide this functionality without requiring any additional code.
-    |
-    */
-
     use RegistersUsers;
 
-    /**
-     * Where to redirect users after registration.
-     *
-     * @var string
-     */
-    protected $redirectTo = RouteServiceProvider::HOME;
+    protected $redirectTo = '/admin';
 
-    /**
-     * Create a new controller instance.
-     *
-     * @return void
-     */
     public function __construct()
     {
         $this->middleware('guest');
     }
 
-    /**
-     * Get a validator for an incoming registration request.
-     *
-     * @param  array  $data
-     * @return \Illuminate\Contracts\Validation\Validator
-     */
     protected function validator(array $data)
     {
         return Validator::make($data, [
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-            'password' => ['required', 'string', 'min:6', 'confirmed'],
+            'phone' => ['required', 'string', 'max:15'],
+            'password' => ['required', 'string', 'min:8', 'confirmed'],
         ]);
     }
 
-    /**
-     * Create a new user instance after a valid registration.
-     *
-     * @param  array  $data
-     * @return \App\Models\User
-     */
     protected function create(array $data)
     {
-        $role_user = Role::where('name', 'user')->first();
-
         $user = User::create([
             'name' => $data['name'],
             'email' => $data['email'],
+            'phone' => $data['phone'],
             'password' => Hash::make($data['password']),
-            'roles_id'=>2,
+            'member_code' => $this->claveGenerator(), // Genera un valor para member_code
         ]);
-        $user->roles()->attach($role_user);
+
+        // Asignar rol de usuario por defecto
+        $role = Role::where('name', 'user')->first();
+        $user->roles()->attach($role);
 
         return $user;
     }
 
-    public function showRegistrationForm()
+    private function claveGenerator()
     {
-        $cart = Session::where('session_estatus',session_id())->get();
-        return view('auth.register',compact('cart'));
+        $clave = "";
+        $letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+        $length = 4;
+        $max = strlen($letters) - 1;
+
+        for ($i = 0; $i < $length; $i++) {
+            $clave .= substr($letters, rand(0, $max), 1);
+        }
+
+        $clave .= "-";
+        $numbers = "0123456789";
+        $length = 4;
+        $max = strlen($numbers) - 1;
+
+        for ($i = 0; $i < $length; $i++) {
+            $clave .= substr($numbers, rand(0, $max), 1);
+        }
+
+        return $clave;
     }
 }

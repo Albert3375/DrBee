@@ -73,10 +73,10 @@
                     </div>
                 </div>
                 <button type="button" id="button-pay-card" class="subscribe shadow-sm btn btn-fill-out btn-block">
-                    @lang('cart.finish')
+                    {{ __('cart.finish') }}
                 </button>
             </div>
-            <!-- Bank transfer info -->
+            <!-- Cash payment info -->
             <div id="nav-tab-cash" class="tab-pane fade">
                 <h6 class="mb-3">Envía tu comprobante de pago.</h6>
                 <dl>
@@ -94,7 +94,7 @@
                 </dl>
                 <p class="text-muted">Notificar tu pago al correo: ventas@Zoofish.com.mx</p>
                 <button type="button" id="button-pay-cash" class="subscribe shadow-sm btn btn-fill-out btn-block">
-                    @lang('cart.finish')
+                    {{ __('cart.finish') }}
                 </button>
             </div>
             <!-- Bank transfer info -->
@@ -110,7 +110,7 @@
                 </dl>
                 <p class="text-muted">Notificar transferencia al correo: ventas@zoofish.com.mx</p>
                 <button type="button" id="button-pay-bank" class="subscribe shadow-sm btn btn-fill-out btn-block">
-                    @lang('cart.finish')
+                    {{ __('cart.finish') }}
                 </button>
             </div>
             <!-- Paypal info -->
@@ -136,3 +136,29 @@
         </h5>
     </a>
 </div>
+
+<!-- Asegúrate de incluir las dependencias JavaScript necesarias -->
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.4/js/all.min.js"></script>
+
+<!-- Agrega aquí el script de Conekta si estás usando Conekta -->
+<!-- <script src="https://cdn.conekta.io/js/latest/conekta.js"></script> -->
+<script>
+    $(document).ready(function() {
+        // Aquí van tus scripts para manejar los pagos
+        $('#button-pay-card').click(function() {
+            // Maneja el pago con tarjeta
+        });
+
+        $('#button-pay-cash').click(function() {
+            // Maneja el pago en efectivo
+        });
+
+        $('#button-pay-bank').click(function() {
+            // Maneja el pago por transferencia bancaria
+        });
+
+        // Configura PayPal aquí si es necesario
+    });
+</script>
