@@ -257,7 +257,7 @@ Homestead.json
 .phpunit.result.cache
 .DS_Store
 /public/*.DS_Store
-composer.lock
+
 package-lock.json
 /public/productsImages/*.DS_Store
 !public/
